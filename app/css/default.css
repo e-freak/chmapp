@@ -6,28 +6,74 @@ body {
     text-align: center;
 }
 
-div.game-field {
+/*div.game-field {
     min-height: 150px;
     background-color: #FF8080;
-}
+}*/
 
-div.message-field {
+/*div.message-field {
     background-color: #80FF80;
-}
+}*/
 
-div.menu-field {
+/*div.menu-field {
     background-color: #8080FF;
-}
+}*/
 
-textarea.message {
+/*textarea.message {
     min-width: 250px;
     min-height: 100px;
     border-style: solid;
     border-width: 3px;
     border-color: #FF0000;
-}
+}*/
 
 button.menu {
     width: 200px;
     height: 30px;
+}
+
+/*ラジオボタンが配置されているdiv自体を中央配置にする*/
+div.connection-dest-field {
+    width: 300px;
+    margin: 0px auto;
+}
+
+/* 解説：http://weboook.blog22.fc2.com/blog-entry-379.html */
+div.connection-dest-field > input {
+    display: none;
+}
+
+div.connection-dest-field > label {
+    display: block;
+    float: left;
+    cursor: pointer;
+    width: 120px;
+    margin: auto;
+    padding: 10px;
+    background: #bdc3c7;
+    color: #869198;
+    font-size: 16px;
+    text-align: center;
+    line-height: 1;
+    transition: .2s;
+}
+
+div.connection-dest-field > label:first-of-type{
+    border-radius: 3px 0 0 3px;
+}
+
+div.connection-dest-field > label:last-of-type{
+    border-radius: 0 3px 3px 0;
+}
+
+div.connection-dest-field > input[type="radio"]:checked + label[for="connect-local"] {
+    /*background-color: #a1b91d;*/
+    background-color: #65ace4;
+    color: #fff;
+}
+
+div.connection-dest-field > input[type="radio"]:checked + label[for="connect-remote"] {
+    /*background-color: #e67168;*/
+    background-color: #65ace4;
+    color: #fff;
 }
