@@ -9,7 +9,7 @@ const {BrowserWindow} = electron; //ウィンドウを表す[BrowserWindow]はel
 let win;
 function createWindow() {
   // BrowserWindowインスタンスを生成
-  win = new BrowserWindow({width: 800, height: 600});
+  win = new BrowserWindow({width: 800, height: 600, useContentSize: true});
   // index.htmlを表示
   win.loadURL(`file://${__dirname}/app/html/index.html`);
   // デバッグするためのDevToolsを表示

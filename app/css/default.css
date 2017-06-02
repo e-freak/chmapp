@@ -27,17 +27,20 @@ body {
     border-color: #FF0000;
 }*/
 
-button.menu {
+/*button.menu {
     width: 200px;
     height: 30px;
-}
+}*/
 
-/*ラジオボタンが配置されているdiv自体を中央配置にする*/
+/* ラジオボタンが配置されているdiv自体を中央配置にする */
 div.connection-dest-field {
-    width: 300px;
-    margin: 0px auto;
+    width: 280px;
+    height: 120px;
+    margin: 20px auto;
+    border : 5px solid maroon ;
 }
 
+/* ラジオボタンデザイン用 */
 /* 解説：http://weboook.blog22.fc2.com/blog-entry-379.html */
 div.connection-dest-field > input {
     display: none;
@@ -53,6 +56,7 @@ div.connection-dest-field > label {
     background: #bdc3c7;
     color: #869198;
     font-size: 16px;
+    font-weight: bold;
     text-align: center;
     line-height: 1;
     transition: .2s;
@@ -76,4 +80,41 @@ div.connection-dest-field > input[type="radio"]:checked + label[for="connect-rem
     /*background-color: #e67168;*/
     background-color: #65ace4;
     color: #fff;
+}
+
+/* ボタン置き場 */
+div.button-field {
+    width: 120px;
+    min-height: 150px;
+    margin: 60px auto;
+    border : 5px solid maroon ;
+}
+
+div.button-field > button {
+    display: block;
+    float: left;
+    cursor: pointer;
+    width: 120px;
+    margin: auto;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    padding: 10px;
+    border-radius: 3px 3px 3px 3px;
+    /*border:3px solid rgb(147,162,0);*/
+    border:3px solid rgb(101,172,228);
+    /*background-color: rgba(147,162,0,1);*/
+    background-color: rgba(255,255,255,1.0);
+    /*color: #fff;*/
+    color: rgb(101,172,228);
+    transition: .2s all;
+}
+
+div.button-field > button:hover {
+    /*border:3px solid rgb(147,162,0);*/
+    border:3px solid rgb(101,172,228);
+    /*background-color: rgba(147,162,0,.0);*/
+    background-color: rgba(101,172,228,1.0);
+    color:  rgba(255,255,255,1.0);
 }
