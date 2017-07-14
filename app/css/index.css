@@ -1,0 +1,151 @@
+@charset 'UTF-8';
+@font-face {
+    font-family: 'SourceHanSansJP-Normal';
+    src: url('../font/SourceHanSansJP-Normal.otf') format('opentype');
+}
+
+body {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+/**
+* 接続先指定UI全般
+*/
+
+div.connection-dest-field {
+    width: 290px;
+    height: 160px;
+    margin: 20px auto;
+    border: 1px solid maroon;
+}
+
+
+/**
+* 接続先選択UI
+* ラジオボタンデザイン解説： http://weboook.blog22.fc2.com/blog-entry-379.html
+* display:flex解説： http://d.hatena.ne.jp/teramako/20121021/p1
+*/
+
+div.connection-dest-field>div.connection-dest-choice {
+    display: flex;
+    flex-direction: row;
+    width: 280px;
+    height: 36px;
+    margin: 1px auto;
+    border: 1px solid orange;
+}
+
+div.connection-dest-field>div.connection-dest-choice>input {
+    display: none;
+}
+
+div.connection-dest-field>div.connection-dest-choice>label {
+    justify-content:center;
+    cursor: pointer;
+    min-width: 120px;
+    max-width: 120px;
+    margin: auto;
+    padding: 10px;
+    background: #bdc3c7;
+    color: #869198;
+    font-family: 'SourceHanSansJP-Normal';
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    transition: .2s;
+}
+
+div.connection-dest-field>div.connection-dest-choice>label:first-of-type {
+    border-radius: 3px 0 0 3px;
+}
+
+div.connection-dest-field>div.connection-dest-choice>label:last-of-type {
+    border-radius: 0 3px 3px 0;
+}
+
+
+/* div.connection-dest-field > div.connection-dest-choice > input[type="radio"]:checked + label[for="connect-local"] {
+    background-color: #a1b91d;
+    background-color: #65ace4;
+    color: #fff;
+} */
+
+
+/* div.connection-dest-field > div.connection-dest-choice > input[type="radio"]:checked + label[for="connect-remote"] {
+    background-color: #e67168;
+    background-color: #65ace4;
+    color: #fff;
+} */
+
+div.connection-dest-field>div.connection-dest-choice>input[type="radio"]:checked+label {
+    background-color: #65ace4;
+    color: #fff;
+}
+
+
+/**
+* 接続先設定UI
+*/
+div.connection-dest-field>div.connection-dest-setting {
+    width: 280px;
+    height: 120px;
+    margin: 1px auto;
+    border: 1px solid lime;
+    text-align: left;
+    font-family: 'SourceHanSansJP-Normal';
+    font-size: 12px;
+}
+
+div.connection-dest-field>div.connection-dest-setting>p {
+    margin: 8px 5px 8px 5px; /* 上 右 下 左 */
+}
+
+/* label幅の指定にはdispllay:inline-blockが必要、ただのblockだと縦に並ぶのでダメ */
+/* http://webdesignrecipes.com/css-blocklevel-elements/ */
+div.connection-dest-field>div.connection-dest-setting>p[class*="dest"]>label {
+    display: inline-block;
+    width: 90px;
+}
+
+div.connection-dest-field>div.connection-dest-setting>p[class*="dest"]>input {
+    width: 170px;
+}
+
+/**
+* 接続先選択UIのデザイン
+* ラジオボタンデザイン解説：http://weboook.blog22.fc2.com/blog-entry-379.html
+*/
+div.button-field {
+    width: 120px;
+    height: 40px;
+    margin: 60px auto;
+    border: 1px solid maroon;
+}
+
+div.button-field>button {
+    display: block;
+    cursor: pointer;
+    width: 120px;
+    height: 40px;
+    margin: auto;
+    font-family: 'SourceHanSansJP-Normal';
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    border-radius: 3px 3px 3px 3px;
+    border: 3px solid rgb(101, 172, 228);
+    background-color: rgba(255, 255, 255, 1.0);
+    /*color: #fff;*/
+    color: rgb(101, 172, 228);
+    transition: .2s all;
+}
+
+div.button-field>button:hover {
+    border: 3px solid rgb(101, 172, 228);
+    background-color: rgba(101, 172, 228, 1.0);
+    color: rgba(255, 255, 255, 1.0);
+}

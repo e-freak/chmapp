@@ -3,7 +3,7 @@ import gulpLoadPlugins from 'gulp-load-plugins'
 
 const gulpplugin = gulpLoadPlugins()
 
-gulp.task('es6toes5', () =>
+gulp.task('transpile_js', () =>
   gulp.src('src/es6/**/*.js')
     .pipe(gulpplugin.babel())
     .pipe(gulp.dest('app/js'))

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>game window</title>
+     <link rel="stylesheet" href="../css/game.css" /> 
+</head>
+
+<body>
+    <main>
+        <div class="total-field">
+            <div class="game-field">
+                <div class="play-field">
+                </div>
+                <button type="button" id="exit-button">終了</button>
+            </div>
+            <div class="info-field">
+                <div class="message-field">
+                    <textarea id="message-field-output-textarea" readonly></textarea>
+                </div>
+                <div class="controller-field">
+                    <textarea id="message-field-input-textarea"></textarea>
+                    <button type="button" id="send-button">送信...はまだ不可</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="../js/view-controller-loader-game.js"></script>
+</body>
+
+</html>

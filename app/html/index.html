@@ -4,31 +4,44 @@
 <head>
     <meta charset="UTF-8" />
     <title>e-freak</title>
-    <link rel="stylesheet" href="../css/default.css" />
+    <link rel="stylesheet" href="../css/index.css" />
 </head>
 
 <body>
     <main>
-        <!--<div class="message-field">
-                <textarea class="message"></textarea>
-            </div>
-            <div class="menu-field">
-                <button type="button" class="menu">OK</button>
-                <button type="button" class="menu">Cancel</button>
-            </div>-->
         <div class="connection-dest-field">
             <!-- 接続先選択 -->
-            <input type="radio" id="connect-local" name="connect-dest" value="local" checked>
-            <label for="connect-local">ローカル</label>
-            <input type="radio" id="connect-remote" name="connect-dest" value="remote" disabled>
-            <label for="connect-remote">リモート</label>
+            <div class="connection-dest-choice">
+                <input type="radio" id="connect-local-radio" name="connect-dest" value="local" checked>
+                <label for="connect-local-radio">ローカル</label>
+                <input type="radio" id="connect-remote-radio" name="connect-dest" value="remote">
+                <label for="connect-remote-radio">リモート</label>
+            </div>
+
+            <!-- 接続設定 -->
+            <div class="connection-dest-setting">
+                <p class="dest-ip-addr">
+                    <label for="dest-ip-addr">接続先</label>
+                    <input type="url" name="dest-ip-addr" id="dest-ip-addr-input" placeholder="123.456.789.0" disabled>
+                </p>
+                <p class="dest-ip-port">
+                    <label for="dest-ip-port">ポート</label>
+                    <input type="number" name="dest-ip-port" id="dest-ip-port-input" min="0" max="65535" placeholder="33400">
+                </p>
+                <p class="dest-user-name">
+                    <label for="dest-user-name">プレイヤー名</label>
+                    <input type="text" name="dest-user-name" id="dest-ip-name-input" maxlength="12" placeholder="最大12文字">
+                </p>
+                <p class="dest-explanation">
+                    <span id="dest-explanation-span">このPCをサーバにします</span>
+                </p>
+            </div>
         </div>
         <div class="button-field">
             <button type="button" id="start-button">スタート</button>
         </div>
-        <input type="button" onclick="location.href='helloworld.html'"value="リンク文字">
     </main>
-    <script src="../js/view-controller-loader-main.js"></script>
+    <script src="../js/view-controller-loader-index.js"></script>
 </body>
 
 </html>

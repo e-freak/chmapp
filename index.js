@@ -1,9 +1,5 @@
-'use strict';
-
 // アプリケーションをコントロールするモジュール
-var electron = require('electron');
-var app = electron.app;
-var BrowserWindow = electron.BrowserWindow;
+const { app, BrowserWindow } = require('electron')
 
 // メインウィンドウはGCされないようにグローバル宣言
 let mainWindow;
@@ -19,12 +15,14 @@ app.on('window-all-closed', function() {
 app.on('ready', function() {
   // メイン画面の表示
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600
+    width: 960,
+    height: 720
   });
   mainWindow.loadURL('file://' + __dirname + '/app/html/index.html');
+  // メニューバーを非表示
+  // mainWindow.setMenu(null);
   // デバッグツールのDevToolsを表示
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 
   //ウィンドウが閉じられたらアプリも終了
   mainWindow.on('closed', function() {
