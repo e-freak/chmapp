@@ -3,6 +3,10 @@
     font-family: 'SourceHanSansJP-Normal';
     src: url('../font/SourceHanSansJP-Normal.otf') format('opentype');
 }
+@font-face {
+    font-family: 'SourceHanSerifJP-Medium';
+    src: url('../font/SourceHanSerifJP-Medium.otf') format('opentype');
+}
 
 body {
     margin: auto;
@@ -33,10 +37,69 @@ div.total-field > div.game-field {
 }
 
 div.total-field > div.game-field > div.play-field {
+    position: relative; /* この要素を基準に子要素を相対配置するために必要 */
     width: 600px;
     height: 500px;
     border: 1px solid yellow;
     background: #3d761b;
+}
+
+div.total-field > div.game-field > div.play-field > div.self-player {
+    position: absolute;
+    width: 400px;
+    height: 80px;
+    bottom:0; /* 親要素に対し下揃えにする（固定幅要素向け） */
+    left:0; /* 親要素に対し左右中央揃えにするために必要（固定幅要素向け） */
+    right:0; /* 親要素に対し左右中央揃えにするために必要（固定幅要素向け） */
+    margin:auto; /* 親要素に対し左右中央揃えにするために必要（固定幅要素向け） */
+    border: 1px solid purple;
+}
+
+div.total-field > div.game-field > div.play-field > div.left-player {
+    position: absolute;
+    width: 400px;
+    height: 80px;
+    left:0; /* 親要素に対し左揃えにする（固定幅要素向け） */
+    top:0; /* 親要素に対し上下中央揃えにするために必要（固定幅要素向け） */
+    bottom:0; /* 親要素に対し上下中央揃えにするために必要（固定幅要素向け） */
+    margin:auto; /* 親要素に対し左右中央揃えにするために必要 */
+    transform: rotate(90deg) translate(0, 160px); /* 要素自身から見て時計回りに90度回転、下に160px移動 */
+    border: 1px solid purple;
+}
+
+/* 牌画像のサイズ */
+div.total-field > div.game-field > div.play-field > div[class$="player"] > div[class$="player-tiles"] > img[id*="player-tile"] {
+    width: 27px;
+    height: 35px;
+}
+
+div.total-field > div.game-field > div.play-field > div.opposite-player {
+    position: absolute;
+    width: 400px;
+    height: 80px;
+    top:0; /* 親要素に対し上揃えにする（固定幅要素向け） */
+    left:0; /* 親要素に対し左右中央揃えにするために必要（固定幅要素向け） */
+    right:0; /* 親要素に対し左右中央揃えにするために必要（固定幅要素向け） */
+    margin:auto; /* 親要素に対し左右中央揃えにするために必要（固定幅要素向け） */
+    transform: rotate(180deg); /* 要素自身から見て時計回りに180度回転 */
+    border: 1px solid purple;
+}
+
+div.total-field > div.game-field > div.play-field > div.right-player {
+    position: absolute;
+    width: 400px;
+    height: 80px;
+    right:0; /* 親要素に対し右揃えにする（固定幅要素向け） */
+    top:0; /* 親要素に対し上下中央揃えにするために必要（固定幅要素向け） */
+    bottom:0; /* 親要素に対し上下中央揃えにするために必要（固定幅要素向け） */
+    margin:auto; /* 親要素に対し左右中央揃えにするために必要 */
+    transform: rotate(-90deg) translate(0, 160px); /* 要素自身から見て時計回りに-90度回転、下に160px移動 */
+    border: 1px solid purple;
+}
+
+div.total-field > div.game-field > div.hint-field {
+    height: 100px;
+    border: 1px solid magenta;
 }
 
 /**
@@ -55,15 +118,23 @@ div.total-field > div.info-field > div.message-field {
     border: 1px solid magenta;
 }
 
+div.total-field > div.info-field > div.message-field > span {
+    font-family: 'SourceHanSerifJP-Medium';
+}
+
 div.total-field > div.info-field > div.message-field > textarea {
     height: 350px;
     resize: none;
 }
 
+/**
+* 送信エリアUI
+*/
+
 div.total-field > div.info-field > div.controller-field {
     height: 200px;
     border: 1px solid cyan;
-    background: #86ba67;
+    /* background: #86ba67; */
 }
 
 div.total-field > div.info-field > div.controller-field > textarea {
