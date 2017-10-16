@@ -8,21 +8,39 @@
     src: url('../font/SourceHanSerifJP-Medium.otf') format('opentype');
 }
 
-body {
-    margin: auto;
+/**
+* htmlから順にheightを設定しないと子要素のheightを割合指定できない
+*/
+html {
+    height: 97vh;
+}
+
+html > body {
+    height: 100%;
+}
+
+html > body > main {
+    width: 99%;
+    height: 99%;
+    min-width:800px;
+    min-height:600px;
     text-align: center;
+    /* border: 1px solid red; */
 }
 
 /**
-* 画面全般
+* 画面全般（ここからhtml > body > mainは省略）
 */
 
 div.total-field {
-    display: flex;
-    width: 800px;
-    height: 600px;
-    margin: 20px auto auto auto; /* 左右中央配置用 */
-    border: 1px solid maroon;
+    display: flex; /* 子要素を並べる */
+    width: 100%;
+    max-height: 96vh;
+}
+div.total-field::after {
+    padding-top: 75%; /* アスペクト比を固定する手法 */
+    display: block;
+    content: "";
 }
 
 /**
@@ -30,24 +48,29 @@ div.total-field {
 */
 
 div.total-field > div.game-field {
-    width: 600px;
-    height: 600px;
+    width: 75%;
     border: 1px solid orange;
     background: #5d993a;
 }
 
+/* 雀卓に相当するフィールド */
 div.total-field > div.game-field > div.play-field {
     position: relative; /* この要素を基準に子要素を相対配置するために必要 */
-    width: 600px;
-    height: 500px;
-    border: 1px solid yellow;
+    width: calc(100% -1px);
+    /* max-height: 95%; */
+    border: 1px solid blue;
     background: #3d761b;
+}
+div.total-field > div.game-field > div.play-field::after {
+    padding-top: 85%; /* 雀卓のアスペクト比指定 */
+    display: block;
+    content: "";
 }
 
 div.total-field > div.game-field > div.play-field > div.self-player {
     position: absolute;
-    width: 400px;
-    height: 80px;
+    width: 72%;
+    height: 16%;
     bottom:0; /* 親要素に対し下揃えにする（固定幅要素向け） */
     left:0; /* 親要素に対し左右中央揃えにするために必要（固定幅要素向け） */
     right:0; /* 親要素に対し左右中央揃えにするために必要（固定幅要素向け） */
@@ -57,26 +80,20 @@ div.total-field > div.game-field > div.play-field > div.self-player {
 
 div.total-field > div.game-field > div.play-field > div.left-player {
     position: absolute;
-    width: 400px;
-    height: 80px;
+    width: 72%;
+    height: 16%;
     left:0; /* 親要素に対し左揃えにする（固定幅要素向け） */
     top:0; /* 親要素に対し上下中央揃えにするために必要（固定幅要素向け） */
     bottom:0; /* 親要素に対し上下中央揃えにするために必要（固定幅要素向け） */
     margin:auto; /* 親要素に対し左右中央揃えにするために必要 */
-    transform: rotate(90deg) translate(0, 160px); /* 要素自身から見て時計回りに90度回転、下に160px移動 */
+    transform: rotate(90deg) translate(0, 210%); /* 要素自身から見て時計回りに90度回転、下に移動 */
     border: 1px solid purple;
-}
-
-/* 牌画像のサイズ */
-div.total-field > div.game-field > div.play-field > div[class$="player"] > div[class$="player-tiles"] > img[id*="player-tile"] {
-    width: 27px;
-    height: 35px;
 }
 
 div.total-field > div.game-field > div.play-field > div.opposite-player {
     position: absolute;
-    width: 400px;
-    height: 80px;
+    width: 72%;
+    height: 16%;
     top:0; /* 親要素に対し上揃えにする（固定幅要素向け） */
     left:0; /* 親要素に対し左右中央揃えにするために必要（固定幅要素向け） */
     right:0; /* 親要素に対し左右中央揃えにするために必要（固定幅要素向け） */
@@ -87,18 +104,67 @@ div.total-field > div.game-field > div.play-field > div.opposite-player {
 
 div.total-field > div.game-field > div.play-field > div.right-player {
     position: absolute;
-    width: 400px;
-    height: 80px;
+    width: 72%;
+    height: 16%;
     right:0; /* 親要素に対し右揃えにする（固定幅要素向け） */
     top:0; /* 親要素に対し上下中央揃えにするために必要（固定幅要素向け） */
     bottom:0; /* 親要素に対し上下中央揃えにするために必要（固定幅要素向け） */
     margin:auto; /* 親要素に対し左右中央揃えにするために必要 */
-    transform: rotate(-90deg) translate(0, 160px); /* 要素自身から見て時計回りに-90度回転、下に160px移動 */
+    transform: rotate(-90deg) translate(0, 210%); /* 要素自身から見て時計回りに-90度回転、下に移動 */
     border: 1px solid purple;
 }
 
+/* 手牌の配置スペース */
+div.total-field > div.game-field > div.play-field > div[class$="player"] > div[class$="player-hand-tiles"] {
+    position: absolute; /* 上下左右に配置するために必要 */
+    width: calc(100% - 3px);
+    left: 0px; /* 左に張り付かせる */
+    bottom: 3px; /* 下から指定のスペースを開けて張り付かせる */
+    margin: 0;
+    border: 1px solid orangered;
+    display: inline-flex; /* 子要素の配置方法を指定。横に並べる。 */
+    justify-content: space-between; /* アイテムを均等に分散する。最初のアイテムは始端に接する。最後のアイテムは終端に接する。 */
+}
+
+/* 元からある手牌とツモ牌のレイアウト */
+div.total-field > div.game-field > div.play-field > div[class$="player"] > div[class$="player-hand-tiles"] > div[class*="player-hand-tiles"] {
+    border: 1px solid yellow;
+}
+
+/* 手牌画像のサイズ */
+div.total-field > div.game-field > div.play-field > div[class$="player"] > div[class$="player-hand-tiles"] > div[class*="player-hand-tiles"] > img[id*="player-hand-tile"] {
+    float: left;
+    width: 3vw; /* 画像のアスペクト比は固定されるので、小さい方の辺のサイズのみ指定でOK */
+    min-width: 17px;
+}
+
+/* 副露牌の配置スペース */
+div.total-field > div.game-field > div.play-field > div[class$="player"] > div[class$="player-melds"] {
+    position: absolute; /* 上下左右に配置するために必要 */
+    width: calc(100% - 3px);
+    left: 0px; /* 左に張り付かせる */
+    bottom: calc(45% + 3px); /* 下から指定のスペースを開けて張り付かせる */
+    margin: 0;
+    border: 1px solid orangered;
+    display: inline-flex; /* 子要素の配置方法を指定。横に並べる。 */
+    justify-content: space-between; /* アイテムを均等に分散する。最初のアイテムは始端に接する。最後のアイテムは終端に接する。 */
+}
+
+/* 副露牌の配置スペースでの各面子 */
+div.total-field > div.game-field > div.play-field > div[class$="player"] > div[class$="player-melds"] > div[class*="player-meld"] {
+    border: 1px solid yellow;
+}
+
+/* 副露牌画像のサイズ */
+div.total-field > div.game-field > div.play-field > div[class$="player"] > div[class$="player-melds"] > div[class*="player-meld"] > img[id*="tile"] {
+    float: left;
+    width: 2vw; /* 画像のアスペクト比は固定されるので、小さい方の辺のサイズのみ指定でOK */
+    min-width: 17px;
+}
+
+/* 補足情報表示エリア */
 div.total-field > div.game-field > div.hint-field {
-    height: 100px;
+    width: 100%;
     border: 1px solid magenta;
 }
 
@@ -107,23 +173,25 @@ div.total-field > div.game-field > div.hint-field {
 */
 
 div.total-field > div.info-field {
-    width: 200px;
-    height: 600px;
-    border: 1px solid lime;
+    width: 25%;
+    /* border: 1px solid lime; */
     background: #b4df9a;
 }
 
 div.total-field > div.info-field > div.message-field {
-    height: 400px;
-    border: 1px solid magenta;
+    width: 100%;
+    height: 70%;
+    /* border: 1px solid magenta; */
 }
 
 div.total-field > div.info-field > div.message-field > span {
+    width: 100%;
     font-family: 'SourceHanSerifJP-Medium';
 }
 
 div.total-field > div.info-field > div.message-field > textarea {
-    height: 350px;
+    width: 97%;
+    height: 93%;
     resize: none;
 }
 
@@ -132,12 +200,14 @@ div.total-field > div.info-field > div.message-field > textarea {
 */
 
 div.total-field > div.info-field > div.controller-field {
-    height: 200px;
-    border: 1px solid cyan;
-    /* background: #86ba67; */
+    width: 100%;
+    height: 30%;
+    /* border: 1px solid cyan; */
+    background: #86ba67;
 }
 
 div.total-field > div.info-field > div.controller-field > textarea {
-    height: 150px;
+    width: 97%;
+    height: 80%;
     resize: none;
 }
