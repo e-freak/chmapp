@@ -129,13 +129,22 @@ div.total-field > div.game-field > div.play-field > div[class$="player"] > div[c
 /* 元からある手牌とツモ牌のレイアウト */
 div.total-field > div.game-field > div.play-field > div[class$="player"] > div[class$="player-hand-tiles"] > div[class*="player-hand-tiles"] {
     border: 1px solid yellow;
+    display: flex;          /* 2 */
+    justify-content: center;/* 3 */
+    align-items: center;    /* 4 */
 }
 
-/* 手牌画像のサイズ */
+/* 手牌画像のデザイン */
 div.total-field > div.game-field > div.play-field > div[class$="player"] > div[class$="player-hand-tiles"] > div[class*="player-hand-tiles"] > img[id*="player-hand-tile"] {
     float: left;
     width: 3vw; /* 画像のアスペクト比は固定されるので、小さい方の辺のサイズのみ指定でOK */
     min-width: 17px;
+    border: 1px solid rgba(255, 255, 255, 0.0); /* マウスオーバー時にborderを強調するので、事前に透過率最大の白枠を作る */
+}
+
+/* 手牌画像のデザイン（マウスオーバー時） */
+div.total-field > div.game-field > div.play-field > div[class$="player"] > div[class$="player-hand-tiles"] > div[class*="player-hand-tiles"] > img[id*="player-hand-tile"]:hover {
+    border: 1px solid orangered;
 }
 
 /* 副露牌の配置スペース */
@@ -162,10 +171,82 @@ div.total-field > div.game-field > div.play-field > div[class$="player"] > div[c
     min-width: 17px;
 }
 
+/* 操作ボタン情報表示エリア */
+div.total-field > div.game-field > div.controller-field {
+    width: 100%;
+    border: 1px solid magenta;
+    display: inline-flex; /* 子要素の配置方法を指定。横に並べる。 */
+    justify-content: flex-start; /* アイテムを均等に分散する。最初のアイテムは始端に接する。最後のアイテムは終端に接する。 */
+}
+
+/* システム系操作ボタン情報表示エリア */
+div.total-field > div.game-field > div.controller-field > div.system-buttons {
+    width: calc(14% - 4px);
+    right: 0px;
+    border: 1px solid Chartreuse;
+}
+
+/* システム系操作ボタンのデザイン */
+div.total-field > div.game-field > div.controller-field > div.system-buttons > button {
+    cursor: pointer;
+    width: 75%;
+    height: 28px;
+    font-family: 'SourceHanSansJP-Normal';
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    border-radius: 12px 12px 12px 12px; /* 上 右 下 左 */
+    border: 3px solid red;
+    background-color: rgba(255, 255, 255, 1.0);
+    color: red; /* 文字色 */
+    transition: .2s all;
+}
+
+/* システム系操作ボタンのデザイン（マウスオーバー時） */
+div.total-field > div.game-field > div.controller-field > div.system-buttons > button:hover {
+    border: 3px solid red;
+    background-color: rgba(255, 0, 0, 1.0); /* red */
+    color: rgba(255, 255, 255, 1.0);
+}
+
+/* チー、ポン、カン、ツモ/ロンボタン情報表示エリア */
+div.total-field > div.game-field > div.controller-field > div.game-buttons {
+    width: 72%;
+    left: 0px;
+    border: 1px solid blue;
+    display: inline-flex; /* 子要素の配置方法を指定。横に並べる。 */
+    justify-content: space-around; /* 子要素を均等に分散する。最初の子要素の始端、最後の子要素の終端にもスペースを設ける。 */
+}
+
+/* チー、ポン、カン、ツモ/ロンのボタンデザイン */
+div.total-field > div.game-field > div.controller-field > div.game-buttons > button {
+    cursor: pointer;
+    width: 20%;
+    height: 28px;
+    font-family: 'SourceHanSansJP-Normal';
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    border-radius: 12px 12px 12px 12px; /* 上 右 下 左 */
+    border: 3px solid orange;
+    background-color: rgba(255, 255, 255, 1.0);
+    color: tomato; /* 文字色 */
+    transition: .2s all;
+}
+
+/* チー、ポン、カン、ツモ/ロンのボタンデザイン（マウスオーバー時） */
+div.total-field > div.game-field > div.controller-field > div.game-buttons > button:hover {
+    border: 3px solid orange;
+    background-color: rgba(255, 165, 0, 1.0); /* orange */
+    color: rgba(255, 255, 255, 1.0);
+}
+
 /* 補足情報表示エリア */
 div.total-field > div.game-field > div.hint-field {
     width: 100%;
-    border: 1px solid magenta;
+    border: 1px solid orange;
 }
 
 /**

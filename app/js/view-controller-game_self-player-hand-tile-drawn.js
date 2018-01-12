@@ -15,10 +15,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 const {
     ipcRenderer
 } = _electron2.default;
+
 class SelfPlayerHandTileDrawn {
     constructor(view) {
         this._view = view;
-        this._element = view.getElementById('self-player-hand-tile-drawn');
     }
 
     initialize() {
