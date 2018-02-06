@@ -171,6 +171,87 @@ div.total-field > div.game-field > div.play-field > div[class$="player"] > div[c
     min-width: 17px;
 }
 
+/* 卓中央の捨て牌と情報エリア */
+div.total-field > div.game-field > div.play-field > div.table-center {
+    position: absolute;
+    width: 72%;
+    height: 67%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border: 1px solid magenta;
+}
+
+/* 捨て牌エリア（プレイヤー） */
+div.total-field > div.game-field > div.play-field > div.table-center > div.self-discards {
+    position: absolute;
+    width: 39%; /* 改変時は注意（手牌の牌を横6縦4にならべたサイズ） */
+    height: 41%; /* 改変時は注意（手牌の牌を横6縦4にならべたサイズ） */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    transform-origin: bottom;
+    transform:scale(0.95);
+    border: 1px solid red;
+}
+
+/* 捨て牌エリア（上家） */
+div.total-field > div.game-field > div.play-field > div.table-center > div.left-discards {
+    position: absolute;
+    width: 39%; /* 改変時は注意（手牌の牌を横6縦4にならべたサイズ） */
+    height: 40%; /* 改変時は注意（手牌の牌を横6縦4にならべたサイズ） */
+    bottom: 50%; /* 親要素の縦の中央までずれる */
+    left: 0;
+    margin: auto;
+    transform-origin: left bottom;
+    transform: rotate(-90deg) translate(-50%, 95%) scale(0.95); /* 左下を原点に反時計周りに90度回転させ、右に自身分のサイズ移動し、下に自身の半分分移動する */
+    border: 1px solid red;
+}
+
+/* 捨て牌エリア（対面） */
+div.total-field > div.game-field > div.play-field > div.table-center > div.opposite-discards {
+    position: absolute;
+    width: 39%; /* 改変時は注意（手牌の牌を横6縦4にならべたサイズ） */
+    height: 41%; /* 改変時は注意（手牌の牌を横6縦4にならべたサイズ） */
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    transform-origin: top;
+    transform:rotate(-180deg) translate(0%, -95%) scale(0.95);
+    border: 1px solid red;
+}
+
+/* 捨て牌エリア（下家） */
+div.total-field > div.game-field > div.play-field > div.table-center > div.right-discards {
+    position: absolute;
+    width: 39%; /* 改変時は注意（手牌の牌を横6縦4にならべたサイズ） */
+    height: 40%; /* 改変時は注意（手牌の牌を横6縦4にならべたサイズ） */
+    bottom: 50%; /* 親要素の縦の中央までずれる */
+    right: 0;
+    margin: auto;
+    transform-origin: right bottom;
+    transform: rotate(90deg) translate(50%, 95%) scale(0.95); /* 右下を原点に反時計周りに90度回転させ、右に自身分のサイズ移動し、下に自身の半分分移動する */
+    border: 1px solid red;
+}
+
+/* 山牌情報エリア */
+div.total-field > div.game-field > div.play-field > div.table-center > div.info-area-center {
+    position: absolute;
+    width: 39%; /* 改変時は注意（捨て牌エリアとの兼ね合い） */
+    height: 20%; /* 改変時は注意（捨て牌エリアとの兼ね合い） */
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border: 1px solid blue;
+}
+
+
 /* 操作ボタン情報表示エリア */
 div.total-field > div.game-field > div.controller-field {
     width: 100%;
