@@ -65,62 +65,140 @@ div.total-field > div.game-field > div.play-field::after {
     content: "";
 }
 
-div.total-field > div.game-field > div.play-field > div.self-player {
+/* 各プレイヤーの手元 */
+div.total-field > div.game-field > div.play-field > div[class$="-player"] {
     position: absolute;
     width: 72%;
     height: 16%;
+    margin:auto; /* 親要素に対し左右中央揃えにするために必要（固定幅要素向け） */
+    display: flex; /* この要素はflexコンテナとなり、子要素は自動的にflexアイテムとなる */
+    flex-direction: column; /* 縦並びにする */
+    align-content:flex-start;  /* 上に寄せる */
+    justify-content: space-between; /* アイテムを均等に分散する。最初のアイテムは始端に接する。最後のアイテムは終端に接する。 */
+    border: 1px solid purple;
+}
+
+div.total-field > div.game-field > div.play-field > div.self-player {
     bottom:0; /* 親要素に対し下揃えにする（固定幅要素向け） */
     left:0; /* 親要素に対し左右中央揃えにするために必要（固定幅要素向け） */
     right:0; /* 親要素に対し左右中央揃えにするために必要（固定幅要素向け） */
-    margin:auto; /* 親要素に対し左右中央揃えにするために必要（固定幅要素向け） */
-    border: 1px solid purple;
-}
-
-div.total-field > div.game-field > div.play-field > div.left-player {
-    position: absolute;
-    width: 72%;
-    height: 16%;
-    left:0; /* 親要素に対し左揃えにする（固定幅要素向け） */
-    top:0; /* 親要素に対し上下中央揃えにするために必要（固定幅要素向け） */
-    bottom:0; /* 親要素に対し上下中央揃えにするために必要（固定幅要素向け） */
-    margin:auto; /* 親要素に対し左右中央揃えにするために必要 */
-    transform: rotate(90deg) translate(0, 210%); /* 要素自身から見て時計回りに90度回転、下に移動 */
-    border: 1px solid purple;
-}
-
-div.total-field > div.game-field > div.play-field > div.opposite-player {
-    position: absolute;
-    width: 72%;
-    height: 16%;
-    top:0; /* 親要素に対し上揃えにする（固定幅要素向け） */
-    left:0; /* 親要素に対し左右中央揃えにするために必要（固定幅要素向け） */
-    right:0; /* 親要素に対し左右中央揃えにするために必要（固定幅要素向け） */
-    margin:auto; /* 親要素に対し左右中央揃えにするために必要（固定幅要素向け） */
-    transform: rotate(180deg); /* 要素自身から見て時計回りに180度回転 */
-    border: 1px solid purple;
 }
 
 div.total-field > div.game-field > div.play-field > div.right-player {
-    position: absolute;
-    width: 72%;
-    height: 16%;
     right:0; /* 親要素に対し右揃えにする（固定幅要素向け） */
     top:0; /* 親要素に対し上下中央揃えにするために必要（固定幅要素向け） */
     bottom:0; /* 親要素に対し上下中央揃えにするために必要（固定幅要素向け） */
-    margin:auto; /* 親要素に対し左右中央揃えにするために必要 */
-    transform: rotate(-90deg) translate(0, 210%); /* 要素自身から見て時計回りに-90度回転、下に移動 */
-    border: 1px solid purple;
+    transform-origin: right center;
+    transform: rotate(-90deg) translate(50%, -50%);
 }
 
-/* 手牌の配置スペース */
-div.total-field > div.game-field > div.play-field > div[class$="player"] > div[class$="player-hand-tiles"] {
-    position: absolute; /* 上下左右に配置するために必要 */
-    width: calc(100% - 3px);
-    left: 0px; /* 左に張り付かせる */
-    bottom: 3px; /* 下から指定のスペースを開けて張り付かせる */
-    margin: 0;
+div.total-field > div.game-field > div.play-field > div.opposite-player {
+    top:0; /* 親要素に対し上揃えにする（固定幅要素向け） */
+    left:0; /* 親要素に対し左右中央揃えにするために必要（固定幅要素向け） */
+    right:0; /* 親要素に対し左右中央揃えにするために必要（固定幅要素向け） */
+    transform: rotate(180deg); /* 要素自身から見て時計回りに180度回転 */
+}
+
+div.total-field > div.game-field > div.play-field > div.left-player {
+    left:0; /* 親要素に対し左揃えにする（固定幅要素向け） */
+    top:0; /* 親要素に対し上下中央揃えにするために必要（固定幅要素向け） */
+    bottom:0; /* 親要素に対し上下中央揃えにするために必要（固定幅要素向け） */
+    transform-origin: left center;
+    transform: rotate(90deg) translate(-50%, -50%); /* 要素自身から見て時計回りに90度回転、下に移動 */
+}
+
+/* プレイヤー情報エリア（全プレイヤー共通） */
+div.total-field > div.game-field > div.play-field > div[class$="player"] > div[class$="player-info"] {
+    display: grid; /* この要素はGrid Layoutコンテナとなり、子要素は自動的にGrid Layoutアイテムとなる */
+    grid-template-columns: 33.33% 33.33% 20% 13.33%; /* 列の幅 */
     border: 1px solid orangered;
-    display: inline-flex; /* 子要素の配置方法を指定。横に並べる。 */
+}
+
+/* プレイヤー名、点数表示エリア（全プレイヤー共通） */
+div.total-field > div.game-field > div.play-field > div[class$="player"] > div[class$="player-info"] > div.public-info {
+    padding: 0em 0.4em;
+    background-color: honeydew;
+    border-radius: 6px; /* 角を丸める */
+    display: flex; /* この要素はflexコンテナとなり、子要素は自動的にflexアイテムとなる */
+    flex-direction: row; /* 横並びにする */
+    align-items: center;
+    justify-content: space-between; /* アイテムを均等に分散する。最初のアイテムは始端に接する。最後のアイテムは終端に接する。 */
+}
+
+/* プレイヤー名、点数表示エリアのテキスト（全プレイヤー共通） */
+div.total-field > div.game-field > div.play-field > div[class$="player"] > div[class$="player-info"] > div.public-info > span {
+    font-family: 'SourceHanSansJP-Normal';
+    font-size: 1.15vw;
+    font-weight: bold;
+    text-align: center;
+}
+div.total-field > div.game-field > div.play-field > div[class$="player"] > div[class$="player-info"] > div.public-info > span[id$="-player-seat-wind"] {
+    padding: 0.1em 0.4em;
+    font-size: 1.05vw;
+    background-color: yellowgreen;
+    border: double 3px white; /* 境界線を2重にする */
+}
+div.total-field > div.game-field > div.play-field > div[class$="player"] > div[class$="player-info"] > div.public-info > span[id$="-player-score"]::after {
+    content: "点";
+}
+
+/* 持ち時間、残り時間表示エリア（自身のプレイヤーのみ表示させる） */
+div.total-field > div.game-field > div.play-field > div[class$="player"] > div[class$="player-info"] > div.time-info {
+    padding: 0em 0.4em;
+    background-color: honeydew;
+    border-radius: 6px; /* 角を丸める */
+    display: flex; /* この要素はflexコンテナとなり、子要素は自動的にflexアイテムとなる */
+    flex-direction: row; /* 横並びにする */
+    align-items: center;
+    justify-content: space-around; /* アイテムを均等に分散する。最初のアイテムは始端に接する。最後のアイテムは終端に接する。 */
+}
+div.total-field > div.game-field > div.play-field > div[class$="player"] > div.right-player-info > div.time-info {
+    display: none;
+}
+div.total-field > div.game-field > div.play-field > div[class$="player"] > div.opposite-player-info > div.time-info {
+    display: none;
+}
+div.total-field > div.game-field > div.play-field > div[class$="player"] > div.left-player-info > div.time-info {
+    display: none;
+}
+
+/* 持ち時間、残り時間表示エリアのテキスト */
+div.total-field > div.game-field > div.play-field > div[class$="player"] > div[class$="player-info"] > div.time-info > span {
+    font-family: 'SourceHanSansJP-Normal';
+    font-size: 1.1vw;
+    font-weight: bold;
+    text-align: center;
+}
+div.total-field > div.game-field > div.play-field > div[class$="player"] > div[class$="player-info"] > div.time-info > span[id$="-player-extra"]::after {
+    content: " +";
+}
+div.total-field > div.game-field > div.play-field > div[class$="player"] > div[class$="player-info"] > div.time-info > span[id$="-player-main"]::after {
+    content: " 秒";
+}
+
+/* 副露牌の配置スペース */
+div.total-field > div.game-field > div.play-field > div[class$="player"] > div[class$="player-melds"] {
+    border: 1px solid orangered;
+    display: flex; /* 子要素の配置方法を指定。横に並べる。 */
+    justify-content: space-between; /* アイテムを均等に分散する。最初のアイテムは始端に接する。最後のアイテムは終端に接する。 */
+}
+
+/* 副露牌の配置スペースでの各面子 */
+div.total-field > div.game-field > div.play-field > div[class$="player"] > div[class$="player-melds"] > div[class*="player-meld"] {
+    border: 1px solid yellow;
+}
+
+/* 副露牌画像のサイズ */
+div.total-field > div.game-field > div.play-field > div[class$="player"] > div[class$="player-melds"] > div[class*="player-meld"] > img[id*="tile"] {
+    float: left;
+    width: 2vw; /* 画像のアスペクト比は固定されるので、小さい方の辺のサイズのみ指定でOK */
+    min-width: 17px;
+}
+
+/* 手牌の配置スペース（全プレイヤー共通スタイル） */
+div.total-field > div.game-field > div.play-field > div[class$="player"] > div[class$="player-hand-tiles"] {
+    border: 1px solid orangered;
+    display: flex; /* 子要素の配置方法を指定。横に並べる。 */
     justify-content: space-between; /* アイテムを均等に分散する。最初のアイテムは始端に接する。最後のアイテムは終端に接する。 */
 }
 
@@ -145,30 +223,6 @@ div.total-field > div.game-field > div.play-field > div[class$="player"] > div[c
     border: 1px solid orangered;
 }
 
-/* 副露牌の配置スペース */
-div.total-field > div.game-field > div.play-field > div[class$="player"] > div[class$="player-melds"] {
-    position: absolute; /* 上下左右に配置するために必要 */
-    width: calc(100% - 3px);
-    left: 0px; /* 左に張り付かせる */
-    bottom: calc(45% + 3px); /* 下から指定のスペースを開けて張り付かせる */
-    margin: 0;
-    border: 1px solid orangered;
-    display: inline-flex; /* 子要素の配置方法を指定。横に並べる。 */
-    justify-content: space-between; /* アイテムを均等に分散する。最初のアイテムは始端に接する。最後のアイテムは終端に接する。 */
-}
-
-/* 副露牌の配置スペースでの各面子 */
-div.total-field > div.game-field > div.play-field > div[class$="player"] > div[class$="player-melds"] > div[class*="player-meld"] {
-    border: 1px solid yellow;
-}
-
-/* 副露牌画像のサイズ */
-div.total-field > div.game-field > div.play-field > div[class$="player"] > div[class$="player-melds"] > div[class*="player-meld"] > img[id*="tile"] {
-    float: left;
-    width: 2vw; /* 画像のアスペクト比は固定されるので、小さい方の辺のサイズのみ指定でOK */
-    min-width: 17px;
-}
-
 /* 卓中央の捨て牌と情報エリア */
 div.total-field > div.game-field > div.play-field > div.table-center {
     position: absolute;
@@ -182,21 +236,89 @@ div.total-field > div.game-field > div.play-field > div.table-center {
     border: 1px solid magenta;
 }
 
+/* 各プレイヤーの情報表示エリア（全プレイヤー共通レイアウト） */
+div.total-field > div.game-field > div.play-field > div.table-center > div[class$="-info"] {
+    position: absolute;
+    width: 18%;
+    height: 12%;
+    margin: auto;
+    display: inline-flex; /* この要素はflexコンテナとなり、子要素は自動的にflexアイテムとなる */
+    flex-direction: column; /* 縦並びにする */
+    justify-content: space-around; /* アイテムを均等に分散する。アイテムは、両側に半分のサイズのスペースを持つ。 */
+    background-color: white;
+    border: double 6px yellowgreen; /* 境界線を2重にする */
+    border-radius: 3px; /* 角を丸める */
+    display: none;
+}
+
+/* プレイヤーの情報表示エリア（自分） */
+div.total-field > div.game-field > div.play-field > div.table-center > div.self-info {
+    bottom: 0;
+    left: 0;
+}
+
+/* プレイヤーの情報表示エリア（上家） */
+div.total-field > div.game-field > div.play-field > div.table-center > div.left-info {
+    top: 0;
+    left: 0;
+    transform-origin: left top;
+    transform: rotate(90deg) translate(0, -100%); /* 左下を原点に反時計周りに90度回転させ、右に自身分のサイズ移動し、下に自身の半分分移動する */
+}
+
+/* プレイヤーの情報表示エリア（対面） */
+div.total-field > div.game-field > div.play-field > div.table-center > div.opposite-info {
+    top: 0;
+    right: 0;
+    transform: rotate(180deg);
+}
+
+/* プレイヤーの情報表示エリア（下家） */
+div.total-field > div.game-field > div.play-field > div.table-center > div.right-info {
+    bottom: 0;
+    right: 0;
+    transform-origin: right bottom;
+    transform: rotate(-90deg) translate(100%, 0%); /* 左下を原点に反時計周りに90度回転させ、右に自身分のサイズ移動し、下に自身の半分分移動する */
+}
+
+/* プレイヤーの情報表示エリアにある各spanのレイアウト */
+div.total-field > div.game-field > div.play-field > div.table-center > div[class$="-info"] > span {
+    padding: 0em 0.4em;
+    font-family: 'SourceHanSansJP-Normal';
+    font-size: 1.09vw;
+    font-weight: bold;
+    text-align: left;
+}
+div.total-field > div.game-field > div.play-field > div.table-center > div[class$="-info"] > span[id$="-main-time-left"]::before {
+    content: "残り時間: ";
+}
+div.total-field > div.game-field > div.play-field > div.table-center > div[class$="-info"] > span[id$="-main-time-left"]::after {
+    content: " 秒";
+}
+div.total-field > div.game-field > div.play-field > div.table-center > div[class$="-info"] > span[id$="-extra-time-left"]::before {
+    content: "持ち時間: ";
+}
+div.total-field > div.game-field > div.play-field > div.table-center > div[class$="-info"] > span[id$="-extra-time-left"]::after {
+    content: " 秒";
+}
+div.total-field > div.game-field > div.play-field > div.table-center > div[class$="-info"] > span[id$="-score"]::before {
+    content: "　持ち点: ";
+}
+
 /* 捨て牌エリア（全プレイヤー共通レイアウト） */
 div.total-field > div.game-field > div.play-field > div.table-center > div[class*="-discards"] {
     position: absolute;
-    width: 39%; /* 改変時は注意（手牌の牌を横6縦4にならべたサイズ） */
+    width: 36%; /* 改変時は注意 */
     margin: auto;
     display: inline-flex; /* この要素はflexコンテナとなり、子要素は自動的にflexアイテムとなる */
     flex-direction: row; /* 横並びにする */
     flex-wrap: wrap; /* 画面幅に収まらない場合は折り返す */
     align-content:flex-start;  /* 上に寄せる */
     align-items: flex-start; /* 初期値は子要素を引き伸ばすので、元サイズを維持しつつ寄せる */
-    justify-content: space-between; /* アイテムを均等に分散する。最初のアイテムは始端に接する。最後のアイテムは終端に接する。 */
+    justify-content: flex-start; /* アイテムを均等に分散する。最初のアイテムは始端に接する。最後のアイテムは終端に接する。 */
     border: 1px solid red;
 }
 
-/* 捨て牌エリア（プレイヤー） */
+/* 捨て牌エリア（自分） */
 div.total-field > div.game-field > div.play-field > div.table-center > div.self-discards {
     height: 41%; /* 改変時は注意（手牌の牌を横6縦4にならべたサイズ） */
     bottom: 0;
@@ -222,7 +344,7 @@ div.total-field > div.game-field > div.play-field > div.table-center > div.oppos
     left: 0;
     right: 0;
     transform-origin: top;
-    transform:rotate(-180deg) translate(0%, -95%) scale(0.95);
+    transform: rotate(180deg) translate(0%, -95%) scale(0.95);
 }
 
 /* 捨て牌エリア（下家） */
@@ -234,9 +356,9 @@ div.total-field > div.game-field > div.play-field > div.table-center > div.right
     transform: rotate(-90deg) translate(50%, 0) scale(0.95); /* 右下を原点に反時計周りに90度回転させ、下に自身の半分分移動する */
 }
 
-/* 捨て牌エリアの牌のレイアウト */
+/* 捨て牌エリアの牌 */
 div.total-field > div.game-field > div.play-field > div.table-center > div[class$="discards"] > img[id*="-discard-tile"] {
-    height: 25%; /* 画像のアスペクト比は固定されるので、小さい方の辺のサイズのみ指定でOK、横6枚並べるので16.6% */
+    height: 20%;
     min-width: 17px;
 }
 
@@ -248,8 +370,8 @@ div.total-field > div.game-field > div.play-field > div.table-center > div[class
     border: 1px solid yellow;
 }
 
-/* 山牌情報エリア */
-div.total-field > div.game-field > div.play-field > div.table-center > div.info-area-center {
+/* 卓中央の情報エリア */
+div.total-field > div.game-field > div.play-field > div.table-center > div.center-area {
     position: absolute;
     width: 39%; /* 改変時は注意（捨て牌エリアとの兼ね合い） */
     height: 20%; /* 改変時は注意（捨て牌エリアとの兼ね合い） */
@@ -258,54 +380,125 @@ div.total-field > div.game-field > div.play-field > div.table-center > div.info-
     left: 0;
     right: 0;
     margin: auto;
+    display: inline-flex; /* この要素はflexコンテナとなり、子要素は自動的にflexアイテムとなる */
+    flex-direction: column; /* 縦並びにする */
+    justify-content: space-around; /* アイテムを均等に分散する。最初のアイテムは始端に接する。最後のアイテムは終端に接する。 */
     border: 1px solid blue;
 }
 
-/* 山牌の枚数表示テキスト */
-div.total-field > div.game-field > div.play-field > div.table-center > div.info-area-center > span[id="wall-tiles-count"]::before {
-    content: "残り "
+/* 卓全体での共通の情報 */
+div.total-field > div.game-field > div.play-field > div.table-center > div.center-area > div.common-info {
+    display: inline-flex; /* この要素はflexコンテナとなり、子要素は自動的にflexアイテムとなる */
+    flex-direction: row; /* 横並びにする */
+    justify-content: space-around; /* アイテムを均等に分散する。各アイテムの周囲に均等なスペースを置く。 */
 }
-div.total-field > div.game-field > div.play-field > div.table-center > div.info-area-center > span[id="wall-tiles-count"] {
-    position: absolute; /*以下、transformまで中央配置のための設定 */
-    top: 50%;
-    left: 50%;
-    transform: translateY(-50%) translateX(-50%);
-    padding: 0.2em 0.4em;
-    color: tomato;
+
+/* 場風と現在の局を表示するエリア */
+div.total-field > div.game-field > div.play-field > div.table-center > div.center-area > div.common-info > div.game-progress {
+    padding: 0.2em 0.6em;
     background-color: white;
-    border: double 6px orange; /* 境界線を2重にする */
+    border: double 6px yellowgreen; /* 境界線を2重にする */
     border-radius: 3px; /* 角を丸める */
+    display: inline-flex; /* この要素はflexコンテナとなり、子要素は自動的にflexアイテムとなる */
+    flex-direction: row; /* 横並びにする */
+    justify-content: space-between; /* アイテムを均等に分散する。最初のアイテムは始端に接する。最後のアイテムは終端に接する。 */
+}
+
+/* 場風表示テキスト */
+div.total-field > div.game-field > div.play-field > div.table-center > div.center-area > div.common-info > div.game-progress > span {
     font-family: 'SourceHanSansJP-Normal';
-    font-size: 13px;
+    font-size: 1.1vw;
     font-weight: bold;
     text-align: center;
 }
-div.total-field > div.game-field > div.play-field > div.table-center > div.info-area-center > span[id="wall-tiles-count"]::after {
+div.total-field > div.game-field > div.play-field > div.table-center > div.center-area > div.common-info > div.game-progress > span[id="prevalent-wind"] {
+    padding: 0em 1em 0em 0em; /* 局表示テキストとの間にスペースを開けるため */
+}
+div.total-field > div.game-field > div.play-field > div.table-center > div.center-area > div.common-info > div.game-progress > span[id="prevalent-wind"]::after {
+    content: " 場";
+}
+/* 局表示テキスト */
+div.total-field > div.game-field > div.play-field > div.table-center > div.center-area > div.common-info > div.game-progress > span[id="round"]::before {
+    content: "第 ";
+}
+div.total-field > div.game-field > div.play-field > div.table-center > div.center-area > div.common-info > div.game-progress > span[id="round"]::after {
+    content: " 局";
+}
+
+/* 山牌の情報を表示するエリア */
+div.total-field > div.game-field > div.play-field > div.table-center > div.center-area > div.common-info > div.wall-info {
+    padding: 0.2em 0.6em;
+    background-color: white;
+    border: double 6px yellowgreen; /* 境界線を2重にする */
+    border-radius: 3px; /* 角を丸める */
+    display: inline-flex; /* この要素はflexコンテナとなり、子要素は自動的にflexアイテムとなる */
+    flex-direction: row; /* 横並びにする */
+    justify-content: space-between; /* アイテムを均等に分散する。最初のアイテムは始端に接する。最後のアイテムは終端に接する。 */
+}
+
+/* 山牌の枚数表示テキスト */
+div.total-field > div.game-field > div.play-field > div.table-center > div.center-area > div.common-info > div.wall-info > span {
+    font-family: 'SourceHanSansJP-Normal';
+    font-size: 1.1vw;
+    font-weight: bold;
+    text-align: center;
+}
+div.total-field > div.game-field > div.play-field > div.table-center > div.center-area > div.common-info > div.wall-info > span[id="wall-tiles-count"]::before {
+    content: "山牌 "
+}
+div.total-field > div.game-field > div.play-field > div.table-center > div.center-area > div.common-info > div.wall-info > span[id="wall-tiles-count"]::after {
     content: " 枚"
+}
+
+/* ドラ表示エリア */
+div.total-field > div.game-field > div.play-field > div.table-center > div.center-area > div.dora-tiles {
+    margin: 0 1% 0 1%;
+    background-color: white;
+    border: double 6px yellowgreen; /* 境界線を2重にする */
+    border-radius: 3px; /* 角を丸める */
+    display: inline-flex; /* この要素はflexコンテナとなり、子要素は自動的にflexアイテムとなる */
+    flex-direction: row; /* 横並びにする */
+    align-content: flex-start;  /* 上に寄せる */
+    align-items: center; /* 初期値は子要素を引き伸ばすので、元サイズを維持しつつ寄せる */
+    justify-content: space-between; /* アイテムを均等に分散する。各アイテムの周囲に均等なスペースを置く。 */
+    display: none;
+}
+
+/* ドラ牌デザイン */
+div.total-field > div.game-field > div.play-field > div.table-center > div.center-area > div.dora-tiles > span {
+    font-family: 'SourceHanSansJP-Normal';
+    font-size: 1vw;
+    font-weight: bold;
+    text-align: center;
+}
+div.total-field > div.game-field > div.play-field > div.table-center > div.center-area > div.dora-tiles > img[id^="dora-tile"] {
+    width: 16.6%;
 }
 
 /* 操作ボタン情報表示エリア */
 div.total-field > div.game-field > div.controller-field {
     width: 100%;
     border: 1px solid magenta;
-    display: inline-flex; /* 子要素の配置方法を指定。横に並べる。 */
+    display: flex; /* 子要素の配置方法を指定。横に並べる。 */
     justify-content: flex-start; /* アイテムを均等に分散する。最初のアイテムは始端に接する。最後のアイテムは終端に接する。 */
+    display: grid;
+    grid-template-columns: 14% 72% 14%; /* 列の幅 */
 }
 
 /* システム系操作ボタン情報表示エリア */
 div.total-field > div.game-field > div.controller-field > div.system-buttons {
-    width: calc(14% - 4px);
     right: 0px;
+    display: flex; /* 子要素の配置方法を指定。横に並べる。 */
+    justify-content: space-around; /* 子要素を均等に分散する。最初の子要素の始端、最後の子要素の終端にもスペースを設ける。 */
     border: 1px solid Chartreuse;
 }
 
 /* システム系操作ボタンのデザイン */
 div.total-field > div.game-field > div.controller-field > div.system-buttons > button {
-    cursor: pointer;
-    width: 75%;
-    height: 28px;
+    height: 66%;
+    padding: 0.2em 2.5em 0.2em 2.5em;
     font-family: 'SourceHanSansJP-Normal';
-    font-size: 12px;
+    font-size: 1.1vw;
     font-weight: bold;
     text-align: center;
     line-height: 1;
@@ -314,6 +507,7 @@ div.total-field > div.game-field > div.controller-field > div.system-buttons > b
     background-color: rgba(255, 255, 255, 1.0);
     color: red; /* 文字色 */
     transition: .2s all;
+    cursor: pointer;
 }
 
 /* システム系操作ボタンのデザイン（マウスオーバー時） */
@@ -325,20 +519,17 @@ div.total-field > div.game-field > div.controller-field > div.system-buttons > b
 
 /* チー、ポン、カン、ツモ/ロンボタン情報表示エリア */
 div.total-field > div.game-field > div.controller-field > div.game-buttons {
-    width: 72%;
-    left: 0px;
     border: 1px solid blue;
-    display: inline-flex; /* 子要素の配置方法を指定。横に並べる。 */
+    display: flex; /* 子要素の配置方法を指定。横に並べる。 */
     justify-content: space-around; /* 子要素を均等に分散する。最初の子要素の始端、最後の子要素の終端にもスペースを設ける。 */
 }
 
 /* チー、ポン、カン、ツモ/ロンのボタンデザイン */
 div.total-field > div.game-field > div.controller-field > div.game-buttons > button {
-    cursor: pointer;
-    width: 20%;
-    height: 28px;
+    height: 66%;
+    padding: 0.2em 2.5em 0.2em 2.5em;
     font-family: 'SourceHanSansJP-Normal';
-    font-size: 12px;
+    font-size: 1.1vw;
     font-weight: bold;
     text-align: center;
     line-height: 1;
@@ -347,6 +538,7 @@ div.total-field > div.game-field > div.controller-field > div.game-buttons > but
     background-color: rgba(255, 255, 255, 1.0);
     color: tomato; /* 文字色 */
     transition: .2s all;
+    cursor: pointer;
 }
 
 /* チー、ポン、カン、ツモ/ロンのボタンデザイン（マウスオーバー時） */
@@ -354,6 +546,42 @@ div.total-field > div.game-field > div.controller-field > div.game-buttons > but
     border: 3px solid orange;
     background-color: rgba(255, 165, 0, 1.0); /* orange */
     color: rgba(255, 255, 255, 1.0);
+}
+div.total-field > div.game-field > div.controller-field > div.game-buttons > button[id="hu-button"]:hover::after,button[id="pass-button"]:hover::after {
+    background-color: rgba(255, 255, 255, 1.0); /* orange */
+    color: rgba(255, 165, 0, 1.0);
+}
+
+/* 自動操作用チェックボックス表示エリア */
+div.total-field > div.game-field > div.controller-field > div.game-checkbox {
+    display: flex; /* 子要素の配置方法を指定。横に並べる。 */
+    flex-direction: column; /* 縦並びにする */
+    align-content: flex-start;  /* 上に寄せる */
+    align-items: flex-start; /* 初期値は子要素を引き伸ばすので、元サイズを維持しつつ寄せる */
+    justify-content: space-between; /* 子要素を均等に分散する。最初の子要素の始端、最後の子要素の終端にもスペースを設ける。 */
+    border: 1px solid yellow;
+}
+
+/* 自動操作用チェックボックス一覧 */
+div.total-field > div.game-field > div.controller-field > div.game-checkbox > div {
+    vertical-align: middle;
+    flex-direction: row; /* 横並びにする */
+    align-content: center;
+    align-items: center;
+    justify-content: space-between; /* 子要素を均等に分散する。最初の子要素の始端、最後の子要素の終端にもスペースを設ける。 */
+}
+
+/* 自動操作用チェックボックス */
+div.total-field > div.game-field > div.controller-field > div.game-checkbox > div > input {
+    margin: 0;
+    vertical-align: middle;
+}
+
+/* 自動操作用チェックボックスのラベル文字 */
+div.total-field > div.game-field > div.controller-field > div.game-checkbox > div > label {
+    font-family: 'SourceHanSansJP-Normal';
+    /* font-weight: bold; */
+    font-size: 1vw;
 }
 
 /* 補足情報表示エリア */
@@ -368,14 +596,12 @@ div.total-field > div.game-field > div.hint-field {
 
 div.total-field > div.info-field {
     width: 25%;
-    /* border: 1px solid lime; */
     background: #b4df9a;
 }
 
 div.total-field > div.info-field > div.message-field {
     width: 100%;
     height: 70%;
-    /* border: 1px solid magenta; */
 }
 
 div.total-field > div.info-field > div.message-field > span {
@@ -396,7 +622,6 @@ div.total-field > div.info-field > div.message-field > textarea {
 div.total-field > div.info-field > div.controller-field {
     width: 100%;
     height: 30%;
-    /* border: 1px solid cyan; */
     background: #86ba67;
 }
 

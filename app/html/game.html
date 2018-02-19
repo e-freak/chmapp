@@ -13,7 +13,19 @@
             <div class="game-field">
                 <div class="play-field">
                     <div class="self-player">
-                        <span id="self-player-info">self</span>
+                        <div class="self-player-info">
+                            <div class="space-adjustment1"><!-- スペースを開けるためだけにある --></div>
+                            <div class="public-info">
+                                <span id="self-player-name">プレイヤー1</span>
+                                <span id="self-player-seat-wind">東</span>
+                                <span id="self-player-score">30000</span>
+                            </div>
+                            <div class="space-adjustment2"><!-- スペースを開けるためだけにある --></div>
+                            <div class="time-info">
+                                <span id="self-player-extra">120</span>
+                                <span id="self-player-main">10</span>
+                            </div>
+                        </div>
                         <div class="self-player-melds">
                             <div class="self-player-meld1">
                                 <img id="self-player-meld1-tile1" src="../image/MJback.svg">
@@ -72,128 +84,17 @@
                             </div>
                         </div>
                     </div>
-                    <div class="left-player">
-                        <span id="left-player-info">left</span>
-                        <div class="left-player-melds">
-                            <div class="left-player-meld1">
-                                <img id="left-player-meld1-tile1" src="../image/MJback.svg">
-                                <img id="left-player-meld1-tile2" src="../image/MJback.svg">
-                                <img id="left-player-meld1-tile3" src="../image/MJback.svg">
-                                <img id="left-player-meld1-tile4" src="../image/MJback.svg">
-                            </div>
-                            <div class="left-player-meld2">
-                                <img id="left-player-meld2-tile1" src="../image/MJback.svg">
-                                <img id="left-player-meld2-tile2" src="../image/MJback.svg">
-                                <img id="left-player-meld2-tile3" src="../image/MJback.svg">
-                                <img id="left-player-meld2-tile4" src="../image/MJback.svg">
-                            </div>
-                            <div class="left-player-meld3">
-                                <img id="left-player-meld3-tile1" src="../image/MJback.svg">
-                                <img id="left-player-meld3-tile2" src="../image/MJback.svg">
-                                <img id="left-player-meld3-tile3" src="../image/MJback.svg">
-                                <img id="left-player-meld3-tile4" src="../image/MJback.svg">
-                            </div>
-                            <div class="left-player-meld4">
-                                <img id="left-player-meld4-tile1" src="../image/MJback.svg">
-                                <img id="left-player-meld4-tile2" src="../image/MJback.svg">
-                                <img id="left-player-meld4-tile3" src="../image/MJback.svg">
-                                <img id="left-player-meld4-tile4" src="../image/MJback.svg">
-                            </div>
-                            <!-- ここから花牌 -->
-                            <div class="left-player-meld5">
-                                <img id="left-player-meld5-tile1" src="../image/MJback.svg">
-                                <img id="left-player-meld5-tile2" src="../image/MJback.svg">
-                                <img id="left-player-meld5-tile3" src="../image/MJback.svg">
-                                <img id="left-player-meld5-tile4" src="../image/MJback.svg">
-                                <img id="left-player-meld5-tile5" src="../image/MJback.svg">
-                                <img id="left-player-meld5-tile6" src="../image/MJback.svg">
-                                <img id="left-player-meld5-tile7" src="../image/MJback.svg">
-                                <img id="left-player-meld5-tile8" src="../image/MJback.svg">
-                            </div>
-                        </div>
-                        <div class="left-player-hand-tiles">
-                            <div class="left-player-hand-tiles-reserved">
-                                <img id="left-player-hand-tile1" src="../image/MJback.svg">
-                                <img id="left-player-hand-tile2" src="../image/MJback.svg">
-                                <img id="left-player-hand-tile3" src="../image/MJback.svg">
-                                <img id="left-player-hand-tile4" src="../image/MJback.svg">
-                                <img id="left-player-hand-tile5" src="../image/MJback.svg">
-                                <img id="left-player-hand-tile6" src="../image/MJback.svg">
-                                <img id="left-player-hand-tile7" src="../image/MJback.svg">
-                                <img id="left-player-hand-tile8" src="../image/MJback.svg">
-                                <img id="left-player-hand-tile9" src="../image/MJback.svg">
-                                <img id="left-player-hand-tile10" src="../image/MJback.svg">
-                                <img id="left-player-hand-tile11" src="../image/MJback.svg">
-                                <img id="left-player-hand-tile12" src="../image/MJback.svg">
-                                <img id="left-player-hand-tile13" src="../image/MJback.svg">
-                            </div>
-                            <div class="left-player-hand-tiles-draw">
-                                <img id="left-player-hand-tile-drawn" src="../image/MJback.svg">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="opposite-player">
-                        <span id="opposite-player-info">opposite</span>
-                        <div class="opposite-player-melds">
-                            <div class="opposite-player-meld1">
-                                <img id="opposite-player-meld1-tile1" src="../image/MJback.svg">
-                                <img id="opposite-player-meld1-tile2" src="../image/MJback.svg">
-                                <img id="opposite-player-meld1-tile3" src="../image/MJback.svg">
-                                <img id="opposite-player-meld1-tile4" src="../image/MJback.svg">
-                            </div>
-                            <div class="opposite-player-meld2">
-                                <img id="opposite-player-meld2-tile1" src="../image/MJback.svg">
-                                <img id="opposite-player-meld2-tile2" src="../image/MJback.svg">
-                                <img id="opposite-player-meld2-tile3" src="../image/MJback.svg">
-                                <img id="opposite-player-meld2-tile4" src="../image/MJback.svg">
-                            </div>
-                            <div class="opposite-player-meld3">
-                                <img id="opposite-player-meld3-tile1" src="../image/MJback.svg">
-                                <img id="opposite-player-meld3-tile2" src="../image/MJback.svg">
-                                <img id="opposite-player-meld3-tile3" src="../image/MJback.svg">
-                                <img id="opposite-player-meld3-tile4" src="../image/MJback.svg">
-                            </div>
-                            <div class="opposite-player-meld4">
-                                <img id="opposite-player-meld4-tile1" src="../image/MJback.svg">
-                                <img id="opposite-player-meld4-tile2" src="../image/MJback.svg">
-                                <img id="opposite-player-meld4-tile3" src="../image/MJback.svg">
-                                <img id="opposite-player-meld4-tile4" src="../image/MJback.svg">
-                            </div>
-                            <!-- ここから花牌 -->
-                            <div class="opposite-player-meld5">
-                                <img id="opposite-player-meld5-tile1" src="../image/MJback.svg">
-                                <img id="opposite-player-meld5-tile2" src="../image/MJback.svg">
-                                <img id="opposite-player-meld5-tile3" src="../image/MJback.svg">
-                                <img id="opposite-player-meld5-tile4" src="../image/MJback.svg">
-                                <img id="opposite-player-meld5-tile5" src="../image/MJback.svg">
-                                <img id="opposite-player-meld5-tile6" src="../image/MJback.svg">
-                                <img id="opposite-player-meld5-tile7" src="../image/MJback.svg">
-                                <img id="opposite-player-meld5-tile8" src="../image/MJback.svg">
-                            </div>
-                        </div>
-                        <div class="opposite-player-hand-tiles">
-                            <div class="opposite-player-hand-tiles-reserved">
-                                <img id="opposite-player-hand-tile1" src="../image/MJback.svg">
-                                <img id="opposite-player-hand-tile2" src="../image/MJback.svg">
-                                <img id="opposite-player-hand-tile3" src="../image/MJback.svg">
-                                <img id="opposite-player-hand-tile4" src="../image/MJback.svg">
-                                <img id="opposite-player-hand-tile5" src="../image/MJback.svg">
-                                <img id="opposite-player-hand-tile6" src="../image/MJback.svg">
-                                <img id="opposite-player-hand-tile7" src="../image/MJback.svg">
-                                <img id="opposite-player-hand-tile8" src="../image/MJback.svg">
-                                <img id="opposite-player-hand-tile9" src="../image/MJback.svg">
-                                <img id="opposite-player-hand-tile10" src="../image/MJback.svg">
-                                <img id="opposite-player-hand-tile11" src="../image/MJback.svg">
-                                <img id="opposite-player-hand-tile12" src="../image/MJback.svg">
-                                <img id="opposite-player-hand-tile13" src="../image/MJback.svg">
-                            </div>
-                            <div class="opposite-player-hand-tiles-draw">
-                                <img id="opposite-player-hand-tile-drawn" src="../image/MJback.svg">
-                            </div>
-                        </div>
-                    </div>
                     <div class="right-player">
-                        <span id="right-player-info">right</span>
+                        <div class="right-player-info">
+                            <div class="space-adjustment"><!-- スペースを開けるためだけにある --></div>
+                            <div class="public-info">
+                                <span id="right-player-name">プレイヤー2</span>
+                                <span id="right-player-seat-wind">南</span>
+                                <span id="right-player-score">30000</span>
+                            </div>
+                            <div class="space-adjustment2"><!-- スペースを開けるためだけにある --></div>
+                            <div class="time-info"><!-- スペースを開けるためだけにある --></div>
+                        </div>
                         <div class="right-player-melds">
                             <div class="right-player-meld1">
                                 <img id="right-player-meld1-tile1" src="../image/MJback.svg">
@@ -252,7 +153,150 @@
                             </div>
                         </div>
                     </div>
+                    <div class="opposite-player">
+                        <div class="opposite-player-info">
+                            <div class="space-adjustment"><!-- スペースを開けるためだけにある --></div>
+                            <div class="public-info">
+                                <span id="opposite-player-name">プレイヤー3</span>
+                                <span id="opposite-player-seat-wind">西</span>
+                                <span id="opposite-player-score">30000</span>
+                            </div>
+                            <div class="space-adjustment2"><!-- スペースを開けるためだけにある --></div>
+                            <div class="time-info"><!-- スペースを開けるためだけにある --></div>
+                        </div>
+                        <div class="opposite-player-melds">
+                            <div class="opposite-player-meld1">
+                                <img id="opposite-player-meld1-tile1" src="../image/MJback.svg">
+                                <img id="opposite-player-meld1-tile2" src="../image/MJback.svg">
+                                <img id="opposite-player-meld1-tile3" src="../image/MJback.svg">
+                                <img id="opposite-player-meld1-tile4" src="../image/MJback.svg">
+                            </div>
+                            <div class="opposite-player-meld2">
+                                <img id="opposite-player-meld2-tile1" src="../image/MJback.svg">
+                                <img id="opposite-player-meld2-tile2" src="../image/MJback.svg">
+                                <img id="opposite-player-meld2-tile3" src="../image/MJback.svg">
+                                <img id="opposite-player-meld2-tile4" src="../image/MJback.svg">
+                            </div>
+                            <div class="opposite-player-meld3">
+                                <img id="opposite-player-meld3-tile1" src="../image/MJback.svg">
+                                <img id="opposite-player-meld3-tile2" src="../image/MJback.svg">
+                                <img id="opposite-player-meld3-tile3" src="../image/MJback.svg">
+                                <img id="opposite-player-meld3-tile4" src="../image/MJback.svg">
+                            </div>
+                            <div class="opposite-player-meld4">
+                                <img id="opposite-player-meld4-tile1" src="../image/MJback.svg">
+                                <img id="opposite-player-meld4-tile2" src="../image/MJback.svg">
+                                <img id="opposite-player-meld4-tile3" src="../image/MJback.svg">
+                                <img id="opposite-player-meld4-tile4" src="../image/MJback.svg">
+                            </div>
+                            <!-- ここから花牌 -->
+                            <div class="opposite-player-meld5">
+                                <img id="opposite-player-meld5-tile1" src="../image/MJback.svg">
+                                <img id="opposite-player-meld5-tile2" src="../image/MJback.svg">
+                                <img id="opposite-player-meld5-tile3" src="../image/MJback.svg">
+                                <img id="opposite-player-meld5-tile4" src="../image/MJback.svg">
+                                <img id="opposite-player-meld5-tile5" src="../image/MJback.svg">
+                                <img id="opposite-player-meld5-tile6" src="../image/MJback.svg">
+                                <img id="opposite-player-meld5-tile7" src="../image/MJback.svg">
+                                <img id="opposite-player-meld5-tile8" src="../image/MJback.svg">
+                            </div>
+                        </div>
+                        <div class="opposite-player-hand-tiles">
+                            <div class="opposite-player-hand-tiles-reserved">
+                                <img id="opposite-player-hand-tile1" src="../image/MJback.svg">
+                                <img id="opposite-player-hand-tile2" src="../image/MJback.svg">
+                                <img id="opposite-player-hand-tile3" src="../image/MJback.svg">
+                                <img id="opposite-player-hand-tile4" src="../image/MJback.svg">
+                                <img id="opposite-player-hand-tile5" src="../image/MJback.svg">
+                                <img id="opposite-player-hand-tile6" src="../image/MJback.svg">
+                                <img id="opposite-player-hand-tile7" src="../image/MJback.svg">
+                                <img id="opposite-player-hand-tile8" src="../image/MJback.svg">
+                                <img id="opposite-player-hand-tile9" src="../image/MJback.svg">
+                                <img id="opposite-player-hand-tile10" src="../image/MJback.svg">
+                                <img id="opposite-player-hand-tile11" src="../image/MJback.svg">
+                                <img id="opposite-player-hand-tile12" src="../image/MJback.svg">
+                                <img id="opposite-player-hand-tile13" src="../image/MJback.svg">
+                            </div>
+                            <div class="opposite-player-hand-tiles-draw">
+                                <img id="opposite-player-hand-tile-drawn" src="../image/MJback.svg">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="left-player">
+                        <div class="left-player-info">
+                            <div class="space-adjustment"><!-- スペースを開けるためだけにある --></div>
+                            <div class="public-info">
+                                <span id="left-player-name">プレイヤー4</span>
+                                <span id="left-player-seat-wind">北</span>
+                                <span id="left-player-score">30000</span>
+                            </div>
+                            <div class="space-adjustment2"><!-- スペースを開けるためだけにある --></div>
+                            <div class="time-info"><!-- スペースを開けるためだけにある --></div>
+                        </div>
+                        <div class="left-player-melds">
+                            <div class="left-player-meld1">
+                                <img id="left-player-meld1-tile1" src="../image/MJback.svg">
+                                <img id="left-player-meld1-tile2" src="../image/MJback.svg">
+                                <img id="left-player-meld1-tile3" src="../image/MJback.svg">
+                                <img id="left-player-meld1-tile4" src="../image/MJback.svg">
+                            </div>
+                            <div class="left-player-meld2">
+                                <img id="left-player-meld2-tile1" src="../image/MJback.svg">
+                                <img id="left-player-meld2-tile2" src="../image/MJback.svg">
+                                <img id="left-player-meld2-tile3" src="../image/MJback.svg">
+                                <img id="left-player-meld2-tile4" src="../image/MJback.svg">
+                            </div>
+                            <div class="left-player-meld3">
+                                <img id="left-player-meld3-tile1" src="../image/MJback.svg">
+                                <img id="left-player-meld3-tile2" src="../image/MJback.svg">
+                                <img id="left-player-meld3-tile3" src="../image/MJback.svg">
+                                <img id="left-player-meld3-tile4" src="../image/MJback.svg">
+                            </div>
+                            <div class="left-player-meld4">
+                                <img id="left-player-meld4-tile1" src="../image/MJback.svg">
+                                <img id="left-player-meld4-tile2" src="../image/MJback.svg">
+                                <img id="left-player-meld4-tile3" src="../image/MJback.svg">
+                                <img id="left-player-meld4-tile4" src="../image/MJback.svg">
+                            </div>
+                            <!-- ここから花牌 -->
+                            <div class="left-player-meld5">
+                                <img id="left-player-meld5-tile1" src="../image/MJback.svg">
+                                <img id="left-player-meld5-tile2" src="../image/MJback.svg">
+                                <img id="left-player-meld5-tile3" src="../image/MJback.svg">
+                                <img id="left-player-meld5-tile4" src="../image/MJback.svg">
+                                <img id="left-player-meld5-tile5" src="../image/MJback.svg">
+                                <img id="left-player-meld5-tile6" src="../image/MJback.svg">
+                                <img id="left-player-meld5-tile7" src="../image/MJback.svg">
+                                <img id="left-player-meld5-tile8" src="../image/MJback.svg">
+                            </div>
+                        </div>
+                        <div class="left-player-hand-tiles">
+                            <div class="left-player-hand-tiles-reserved">
+                                <img id="left-player-hand-tile1" src="../image/MJback.svg">
+                                <img id="left-player-hand-tile2" src="../image/MJback.svg">
+                                <img id="left-player-hand-tile3" src="../image/MJback.svg">
+                                <img id="left-player-hand-tile4" src="../image/MJback.svg">
+                                <img id="left-player-hand-tile5" src="../image/MJback.svg">
+                                <img id="left-player-hand-tile6" src="../image/MJback.svg">
+                                <img id="left-player-hand-tile7" src="../image/MJback.svg">
+                                <img id="left-player-hand-tile8" src="../image/MJback.svg">
+                                <img id="left-player-hand-tile9" src="../image/MJback.svg">
+                                <img id="left-player-hand-tile10" src="../image/MJback.svg">
+                                <img id="left-player-hand-tile11" src="../image/MJback.svg">
+                                <img id="left-player-hand-tile12" src="../image/MJback.svg">
+                                <img id="left-player-hand-tile13" src="../image/MJback.svg">
+                            </div>
+                            <div class="left-player-hand-tiles-draw">
+                                <img id="left-player-hand-tile-drawn" src="../image/MJback.svg">
+                            </div>
+                        </div>
+                    </div>
                     <div class="table-center">
+                        <div class="self-info">
+                            <span id="self-main-time-left">10</span>
+                            <span id="self-extra-time-left">120</span>
+                            <span id="self-score">30000</span>
+                        </div>
                         <div class="self-discards">
                             <img id="self-discard-tile1" src="../image/MJ1tiao.svg">
                             <img id="self-discard-tile2" src="../image/MJback.svg">
@@ -278,58 +322,20 @@
                             <img id="self-discard-tile22" src="../image/MJback.svg">
                             <img id="self-discard-tile23" src="../image/MJback.svg">
                             <img id="self-discard-tile24" src="../image/MJback.svg">
+                            <img id="self-discard-tile25" src="../image/MJback.svg">
+                            <img id="self-discard-tile26" src="../image/MJback.svg">
+                            <img id="self-discard-tile27" src="../image/MJback.svg">
+                            <img id="self-discard-tile28" src="../image/MJback.svg">
+                            <img id="self-discard-tile29" src="../image/MJback.svg">
+                            <img id="self-discard-tile30" src="../image/MJback.svg">
+                            <img id="self-discard-tile31" src="../image/MJback.svg">
+                            <img id="self-discard-tile32" src="../image/MJback.svg">
+                            <img id="self-discard-tile33" src="../image/MJback.svg">
                         </div>
-                        <div class="left-discards">
-                            <img id="left-discard-tile1" src="../image/MJ1tiao.svg">
-                            <img id="left-discard-tile2" src="../image/MJback.svg">
-                            <img id="left-discard-tile3" src="../image/MJback.svg">
-                            <img id="left-discard-tile4" src="../image/MJback.svg">
-                            <img id="left-discard-tile5" src="../image/MJback.svg">
-                            <img id="left-discard-tile6" src="../image/MJback.svg">
-                            <img id="left-discard-tile7" src="../image/MJback.svg">
-                            <img id="left-discard-tile8" src="../image/MJback.svg">
-                            <img id="left-discard-tile9" src="../image/MJback.svg">
-                            <img id="left-discard-tile10" src="../image/MJback.svg">
-                            <img id="left-discard-tile11" src="../image/MJback.svg">
-                            <img id="left-discard-tile12" src="../image/MJback.svg">
-                            <img id="left-discard-tile13" src="../image/MJback.svg">
-                            <img id="left-discard-tile14" src="../image/MJback.svg">
-                            <img id="left-discard-tile15" src="../image/MJback.svg">
-                            <img id="left-discard-tile16" src="../image/MJback.svg">
-                            <img id="left-discard-tile17" src="../image/MJback.svg">
-                            <img id="left-discard-tile18" src="../image/MJback.svg">
-                            <img id="left-discard-tile19" src="../image/MJback.svg">
-                            <img id="left-discard-tile20" src="../image/MJback.svg">
-                            <img id="left-discard-tile21" src="../image/MJback.svg">
-                            <img id="left-discard-tile22" src="../image/MJback.svg">
-                            <img id="left-discard-tile23" src="../image/MJback.svg">
-                            <img id="left-discard-tile24" src="../image/MJback.svg">
-                        </div>
-                        <div class="opposite-discards">
-                            <img id="opposite-discard-tile1" src="../image/MJ1tiao.svg">
-                            <img id="opposite-discard-tile2" src="../image/MJback.svg">
-                            <img id="opposite-discard-tile3" src="../image/MJback.svg">
-                            <img id="opposite-discard-tile4" src="../image/MJback.svg">
-                            <img id="opposite-discard-tile5" src="../image/MJback.svg">
-                            <img id="opposite-discard-tile6" src="../image/MJback.svg">
-                            <img id="opposite-discard-tile7" src="../image/MJback.svg">
-                            <img id="opposite-discard-tile8" src="../image/MJback.svg">
-                            <img id="opposite-discard-tile9" src="../image/MJback.svg">
-                            <img id="opposite-discard-tile10" src="../image/MJback.svg">
-                            <img id="opposite-discard-tile11" src="../image/MJback.svg">
-                            <img id="opposite-discard-tile12" src="../image/MJback.svg">
-                            <img id="opposite-discard-tile13" src="../image/MJback.svg">
-                            <img id="opposite-discard-tile14" src="../image/MJback.svg">
-                            <img id="opposite-discard-tile15" src="../image/MJback.svg">
-                            <img id="opposite-discard-tile16" src="../image/MJback.svg">
-                            <img id="opposite-discard-tile17" src="../image/MJback.svg">
-                            <img id="opposite-discard-tile18" src="../image/MJback.svg">
-                            <img id="opposite-discard-tile19" src="../image/MJback.svg">
-                            <img id="opposite-discard-tile20" src="../image/MJback.svg">
-                            <img id="opposite-discard-tile21" src="../image/MJback.svg">
-                            <img id="opposite-discard-tile22" src="../image/MJback.svg">
-                            <img id="opposite-discard-tile23" src="../image/MJback.svg">
-                            <img id="opposite-discard-tile24" src="../image/MJback.svg">
+                        <div class="right-info">
+                            <span id="right-main-time-left">10</span>
+                            <span id="right-extra-time-left">120</span>
+                            <span id="right-score">30000</span>
                         </div>
                         <div class="right-discards">
                             <img id="right-discard-tile1" src="../image/MJ1tiao.svg">
@@ -356,9 +362,114 @@
                             <img id="right-discard-tile22" src="../image/MJback.svg">
                             <img id="right-discard-tile23" src="../image/MJback.svg">
                             <img id="right-discard-tile24" src="../image/MJback.svg">
+                            <img id="right-discard-tile25" src="../image/MJback.svg">
+                            <img id="right-discard-tile26" src="../image/MJback.svg">
+                            <img id="right-discard-tile27" src="../image/MJback.svg">
+                            <img id="right-discard-tile28" src="../image/MJback.svg">
+                            <img id="right-discard-tile29" src="../image/MJback.svg">
+                            <img id="right-discard-tile30" src="../image/MJback.svg">
+                            <img id="right-discard-tile31" src="../image/MJback.svg">
+                            <img id="right-discard-tile32" src="../image/MJback.svg">
+                            <img id="right-discard-tile33" src="../image/MJback.svg">
                         </div>
-                        <div class="info-area-center">
-                            <span id="wall-tiles-count">92</span>
+                        <div class="opposite-info">
+                            <span id="opposite-main-time-left">10</span>
+                            <span id="opposite-extra-time-left">120</span>
+                            <span id="opposite-score">30000</span>
+                        </div>
+                        <div class="opposite-discards">
+                            <img id="opposite-discard-tile1" src="../image/MJ1tiao.svg">
+                            <img id="opposite-discard-tile2" src="../image/MJback.svg">
+                            <img id="opposite-discard-tile3" src="../image/MJback.svg">
+                            <img id="opposite-discard-tile4" src="../image/MJback.svg">
+                            <img id="opposite-discard-tile5" src="../image/MJback.svg">
+                            <img id="opposite-discard-tile6" src="../image/MJback.svg">
+                            <img id="opposite-discard-tile7" src="../image/MJback.svg">
+                            <img id="opposite-discard-tile8" src="../image/MJback.svg">
+                            <img id="opposite-discard-tile9" src="../image/MJback.svg">
+                            <img id="opposite-discard-tile10" src="../image/MJback.svg">
+                            <img id="opposite-discard-tile11" src="../image/MJback.svg">
+                            <img id="opposite-discard-tile12" src="../image/MJback.svg">
+                            <img id="opposite-discard-tile13" src="../image/MJback.svg">
+                            <img id="opposite-discard-tile14" src="../image/MJback.svg">
+                            <img id="opposite-discard-tile15" src="../image/MJback.svg">
+                            <img id="opposite-discard-tile16" src="../image/MJback.svg">
+                            <img id="opposite-discard-tile17" src="../image/MJback.svg">
+                            <img id="opposite-discard-tile18" src="../image/MJback.svg">
+                            <img id="opposite-discard-tile19" src="../image/MJback.svg">
+                            <img id="opposite-discard-tile20" src="../image/MJback.svg">
+                            <img id="opposite-discard-tile21" src="../image/MJback.svg">
+                            <img id="opposite-discard-tile22" src="../image/MJback.svg">
+                            <img id="opposite-discard-tile23" src="../image/MJback.svg">
+                            <img id="opposite-discard-tile24" src="../image/MJback.svg">
+                            <img id="opposite-discard-tile25" src="../image/MJback.svg">
+                            <img id="opposite-discard-tile26" src="../image/MJback.svg">
+                            <img id="opposite-discard-tile27" src="../image/MJback.svg">
+                            <img id="opposite-discard-tile28" src="../image/MJback.svg">
+                            <img id="opposite-discard-tile29" src="../image/MJback.svg">
+                            <img id="opposite-discard-tile30" src="../image/MJback.svg">
+                            <img id="opposite-discard-tile31" src="../image/MJback.svg">
+                            <img id="opposite-discard-tile32" src="../image/MJback.svg">
+                            <img id="opposite-discard-tile33" src="../image/MJback.svg">
+                        </div>
+                        <div class="left-info">
+                            <span id="left-main-time-left">10</span>
+                            <span id="left-extra-time-left">120</span>
+                            <span id="left-score">30000</span>
+                        </div>
+                        <div class="left-discards">
+                            <img id="left-discard-tile1" src="../image/MJ1tiao.svg">
+                            <img id="left-discard-tile2" src="../image/MJback.svg">
+                            <img id="left-discard-tile3" src="../image/MJback.svg">
+                            <img id="left-discard-tile4" src="../image/MJback.svg">
+                            <img id="left-discard-tile5" src="../image/MJback.svg">
+                            <img id="left-discard-tile6" src="../image/MJback.svg">
+                            <img id="left-discard-tile7" src="../image/MJback.svg">
+                            <img id="left-discard-tile8" src="../image/MJback.svg">
+                            <img id="left-discard-tile9" src="../image/MJback.svg">
+                            <img id="left-discard-tile10" src="../image/MJback.svg">
+                            <img id="left-discard-tile11" src="../image/MJback.svg">
+                            <img id="left-discard-tile12" src="../image/MJback.svg">
+                            <img id="left-discard-tile13" src="../image/MJback.svg">
+                            <img id="left-discard-tile14" src="../image/MJback.svg">
+                            <img id="left-discard-tile15" src="../image/MJback.svg">
+                            <img id="left-discard-tile16" src="../image/MJback.svg">
+                            <img id="left-discard-tile17" src="../image/MJback.svg">
+                            <img id="left-discard-tile18" src="../image/MJback.svg">
+                            <img id="left-discard-tile19" src="../image/MJback.svg">
+                            <img id="left-discard-tile20" src="../image/MJback.svg">
+                            <img id="left-discard-tile21" src="../image/MJback.svg">
+                            <img id="left-discard-tile22" src="../image/MJback.svg">
+                            <img id="left-discard-tile23" src="../image/MJback.svg">
+                            <img id="left-discard-tile24" src="../image/MJback.svg">
+                            <img id="left-discard-tile25" src="../image/MJback.svg">
+                            <img id="left-discard-tile26" src="../image/MJback.svg">
+                            <img id="left-discard-tile27" src="../image/MJback.svg">
+                            <img id="left-discard-tile28" src="../image/MJback.svg">
+                            <img id="left-discard-tile29" src="../image/MJback.svg">
+                            <img id="left-discard-tile30" src="../image/MJback.svg">
+                            <img id="left-discard-tile31" src="../image/MJback.svg">
+                            <img id="left-discard-tile32" src="../image/MJback.svg">
+                            <img id="left-discard-tile33" src="../image/MJback.svg">
+                        </div>
+                        <div class="center-area">
+                            <div class="common-info">
+                                <div class="game-progress">
+                                    <span id="prevalent-wind">東</span>
+                                    <span id="round">1</span>
+                                </div>
+                                <div class="wall-info">
+                                    <span id="wall-tiles-count">92</span>
+                                </div>
+                            </div>
+                            <div class="dora-tiles">
+                                <span>ドラ</span>
+                                <img id="dora-tile1" src="../image/MJback.svg">
+                                <img id="dora-tile2" src="../image/MJback.svg">
+                                <img id="dora-tile3" src="../image/MJback.svg">
+                                <img id="dora-tile4" src="../image/MJback.svg">
+                                <img id="dora-tile5" src="../image/MJback.svg">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -367,10 +478,25 @@
                         <button type="button" id="exit-button">終了</button>
                     </div>
                     <div class="game-buttons">
-                        <button type="button" id="chow-button">チー</button>
-                        <button type="button" id="pong-button">ポン</button>
                         <button type="button" id="kong-button">カン</button>
+                        <button type="button" id="pong-button">ポン</button>
+                        <button type="button" id="chow-button">チー</button>
                         <button type="button" id="hu-button">フー</button>
+                        <button type="button" id="pass-button">パス</button>
+                    </div>
+                    <div class="game-checkbox">
+                        <div class="auto-hu">
+                            <input type="checkbox" id="auto-hu">
+                            <label for="auto-hu">自動アガリ</label
+                        ></div>
+                        <div class="auto-discard">
+                            <input type="checkbox" id="auto-discard">
+                            <label for="auto-discard">自動ツモ切り</label>
+                        </div>
+                        <div class="do-not-meld">
+                            <input type="checkbox" id="do-not-meld">
+                            <label for="do-not-meld">副露しない</label>
+                        </div>
                     </div>
                 </div>
                 <div class="hint-field">
