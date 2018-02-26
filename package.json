@@ -8,9 +8,10 @@
   },
   "main": "app/js/MainProcess/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "gulp transpile_js",
-    "start": "electron ."
+    "start": "electron .",
+    "build_test": "gulp transpile_test",
+    "test": "mocha --timeout 60000 test/mocha-test.js"
   },
   "keywords": [],
   "author": "",
@@ -24,7 +25,9 @@
     "gulp-babel": "latest",
     "gulp-load-plugins": "latest",
     "htmlhint": "latest",
-    "mocha": "latest"
+    "istanbul": "latest",
+    "mocha": "latest",
+    "nyc": "latest"
   },
   "dependencies": {
     "electron": "latest"
@@ -40,6 +43,27 @@
         }
       ]
     ],
+    "env": {
+      "test": {
+        "plugins": [
+          "istanbul"
+        ]
+      }
+    },
     "comments": false
+  },
+  "nyc": {
+    "include": [
+      "src/es6/lib/**/*js"
+    ],
+    "require": [
+      "babel-register"
+    ],
+    "reporter": [
+      "lcov",
+      "text"
+    ],
+    "sourceMap": false,
+    "instrument": false
   }
 }

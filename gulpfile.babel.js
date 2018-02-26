@@ -8,3 +8,9 @@ gulp.task('transpile_js', () => {
     .pipe(gulpplugin.babel())
     .pipe(gulp.dest('app/js'))
 })
+
+gulp.task('transpile_test', () => {
+  gulp.src('src/test/**/*.js')
+    .pipe(gulpplugin.babel())
+    .pipe(gulp.dest('test'))
+})
