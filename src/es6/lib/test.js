@@ -1,9 +1,9 @@
-import {default as Tile} from './tile-class';
-import {default as TableInfoWMC} from './class-table-info-wmc';
+import {default as Tile} from './class-tile';
+import {default as GameUnitWMC} from './class-game-unit-wmc';
 
 let tl = new Tile('1wan');
 // let tl2 = new Tile('aaa');
-console.log(new TableInfoWMC());
+console.log(new GameUnitWMC());
 console.log(tl.imageFile);
 console.log(tl.type);
 console.log(tl.number);

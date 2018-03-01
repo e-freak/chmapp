@@ -427,7 +427,6 @@ div.total-field > div.game-field > div.controller-field > div.system-buttons {
 
 /* システム系操作ボタンのデザイン */
 div.total-field > div.game-field > div.controller-field > div.system-buttons > button {
-    height: 66%;
     padding: 0.2em 2.5em 0.2em 2.5em;
     font-family: 'SourceHanSansJP-Normal';
     font-size: 1.1vw;
@@ -458,7 +457,6 @@ div.total-field > div.game-field > div.controller-field > div.game-buttons {
 
 /* チー、ポン、カン、ツモ/ロンのボタンデザイン */
 div.total-field > div.game-field > div.controller-field > div.game-buttons > button {
-    height: 66%;
     padding: 0.2em 2.5em 0.2em 2.5em;
     font-family: 'SourceHanSansJP-Normal';
     font-size: 1.1vw;
@@ -486,7 +484,7 @@ div.total-field > div.game-field > div.controller-field > div.game-buttons > but
 
 /* 自動操作用チェックボックス表示エリア */
 div.total-field > div.game-field > div.controller-field > div.game-checkbox {
-    display: flex; /* 子要素の配置方法を指定。横に並べる。 */
+    display: flex; /* 子要素の配置方法を指定。並べる。 */
     flex-direction: column; /* 縦並びにする */
     align-content: flex-start;  /* 上に寄せる */
     align-items: flex-start; /* 初期値は子要素を引き伸ばすので、元サイズを維持しつつ寄せる */
@@ -497,23 +495,25 @@ div.total-field > div.game-field > div.controller-field > div.game-checkbox {
 /* 自動操作用チェックボックス一覧 */
 div.total-field > div.game-field > div.controller-field > div.game-checkbox > div {
     vertical-align: middle;
+    display: flex; /* 子要素の配置方法を指定。並べる。 */
     flex-direction: row; /* 横並びにする */
     align-content: center;
     align-items: center;
     justify-content: space-between; /* 子要素を均等に分散する。最初の子要素の始端、最後の子要素の終端にもスペースを設ける。 */
+    height: 1.5vh;
 }
 
 /* 自動操作用チェックボックス */
 div.total-field > div.game-field > div.controller-field > div.game-checkbox > div > input {
-    margin: 0;
+    margin: 0 0.5vw;
     vertical-align: middle;
 }
 
 /* 自動操作用チェックボックスのラベル文字 */
 div.total-field > div.game-field > div.controller-field > div.game-checkbox > div > label {
     font-family: 'SourceHanSansJP-Normal';
-    /* font-weight: bold; */
-    font-size: 1vw;
+    font-size: 0.8vw;
+    vertical-align: top;
 }
 
 /* 補足情報表示エリア */

@@ -8,7 +8,7 @@ import {
 export default class {
     constructor(name) {
         if (!(name in TILE_ATTRIBUTE)) { /* 牌画像の連想配列のkeyを使って対応するnameかどうかを調べる */
-            throw new Error("対応していない牌です。");
+            throw new Error("Invalid tile name.");
         }
         this.name = name;
         this.imageFile = TILE_ATTRIBUTE[name][0];

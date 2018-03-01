@@ -11,7 +11,7 @@
     "build": "gulp transpile_js",
     "start": "electron .",
     "build_test": "gulp transpile_test",
-    "test": "mocha --timeout 60000 test/mocha-test.js"
+    "test": "mocha test/mocha-test.js"
   },
   "keywords": [],
   "author": "",

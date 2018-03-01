@@ -4,30 +4,35 @@
  */
 export default class {
     constructor() {
-        this.public  = this._createPublicInfo();
-        this.self = this._createSelfPlayerInfo();
-        this.right = this._createRightPlayerInfo();
-        this.opposite = this._createOppositePlayerInfo();
-        this.left = this._createLeftPlayerInfo();
+        this.public = this._createPublicInfo();
+        this.wall = this._createWall();
+        this.self = this._createSelfPlayer();
+        this.right = this._createRightPlayer();
+        this.opposite = this._createOppositePlayer();
+        this.left = this._createLeftPlayer();
     }
 
     _createPublicInfo() {
+        throw new Error("No public info creation logic.");
+    }
+
+    _createWall() {
         throw new Error("No wall creation logic.");
     }
 
-    _createSelfPlayerInfo() {
+    _createSelfPlayer() {
         throw new Error("No self-player creation logic.");
     }
 
-    _createRightPlayerInfo() {
+    _createRightPlayer() {
         throw new Error("No right-player creation logic.");
     }
 
-    _createOppositePlayerInfo() {
+    _createOppositePlayer() {
         throw new Error("No opposite-player creation logic.");
     }
 
-    _createLeftPlayerInfo() {
+    _createLeftPlayer() {
         throw new Error("No left-player creation logic.");
     }
 }
