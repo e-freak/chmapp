@@ -10,6 +10,9 @@ import {
 import {
     default as Wall
 } from './class-game-unit-wall';
+import {
+    default as Player
+} from './class-game-unit-player';
 
 export default class extends GameUnit {
     constructor() {
@@ -24,20 +27,23 @@ export default class extends GameUnit {
         return new WallWMC();
     }
 
-    _createSelfPlayerInfo() {
-        throw new Error("No self-player creation logic.");
+    _createSelfPlayer() {
+        const player = new Player();
+        player.timeLimit = 10; /* 操作時間猶予（秒） */
+        player.timeLimitExtra = 120; /* 持ち時間（秒） */
+        return player;
     }
 
-    _createRightPlayerInfo() {
-        throw new Error("No right-player creation logic.");
+    _createRightPlayer() {
+        return this._createSelfPlayer();
     }
 
-    _createOppositePlayerInfo() {
-        throw new Error("No opposite-player creation logic.");
+    _createOppositePlayer() {
+        return this._createSelfPlayer();
     }
 
-    _createLeftPlayerInfo() {
-        throw new Error("No left-player creation logic.");
+    _createLeftPlayer() {
+        return this._createSelfPlayer();
     }
 }
 
