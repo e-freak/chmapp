@@ -10,6 +10,8 @@ export default class {
         this.right = this._createRightPlayer();
         this.opposite = this._createOppositePlayer();
         this.left = this._createLeftPlayer();
+
+        this._state; /* 状態 */
     }
 
     _createPublicInfo() {
@@ -34,5 +36,17 @@ export default class {
 
     _createLeftPlayer() {
         throw new Error("No left-player creation logic.");
+    }
+
+    startGame() {
+        throw new Error("No startGame logic.");
+    }
+
+    prepareNextStep() {
+        throw new Error("No goNextStep logic.");
+    }
+
+    goNextStep() {
+        throw new Error("No goNextStep logic.");
     }
 }

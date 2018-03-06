@@ -61,3 +61,29 @@ ipcMain.on('asynchronous-message_self-player-hand-tile-drawn', (event, arg) => {
     // ※event.senderはwebContentsオブジェクト
   }
 });
+
+ipcMain.on('asynchronous-message_game', (event, arg) => {
+  switch (arg) {
+    case 'start-game-wmc':
+      console.log('start-game-wmc');
+      event.sender.send('asynchronous-reply_game', 'hoge-');
+      break;
+    case 'draw-tile':
+      console.log('draw-tile');
+      event.sender.send('asynchronous-reply_game', getRandomTile());
+      break;
+    default:
+      console.log('Error: Unexpected behavior.');
+  }
+});
+
+function getRandomTile() {
+  // 連想配列からランダムに牌を選ぶ処理
+  let tiles = []
+  Object.keys(tileImages).forEach((element, index, array) => {
+    tiles.push(element);
+  })
+  let tilenum = Math.floor(Math.random() * tiles.length);
+  console.log(tiles[tilenum]);
+  return tiles[tilenum];
+}

@@ -3,10 +3,12 @@
  */
 export default class {
     constructor() {
-        this.score = 0;
+        this.score = 0; /* 持ち点 */
         this.timeLimit = 0; /* 操作時間猶予（秒） */
         this.timeLimitExtra = 0; /* 持ち時間（秒） */
-        this.hand; /* 手牌（ツモ牌は含まない） */
         this.drawTile; /* ツモ牌 */
+        this.hand; /* 手牌（ツモ牌は含まない） */
+        this.melds = [undefined, undefined, undefined, undefined]; /* 副露面子 */
+        this.flowers = [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined]; /* 花牌 */
     }
 }

@@ -45,6 +45,10 @@ export default class extends GameUnit {
     _createLeftPlayer() {
         return this._createSelfPlayer();
     }
+
+    startGame() {
+        throw new Error("No startGame logic.");
+    }
 }
 
 class PublicInfoWMC extends PublicInfo {
