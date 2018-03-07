@@ -15,38 +15,38 @@ export default class {
     }
 
     _createPublicInfo() {
-        throw new Error("No public info creation logic.");
+        throw new Error('No public info creation logic.');
     }
 
     _createWall() {
-        throw new Error("No wall creation logic.");
+        throw new Error('No wall creation logic.');
     }
 
     _createSelfPlayer() {
-        throw new Error("No self-player creation logic.");
+        throw new Error('No self-player creation logic.');
     }
 
     _createRightPlayer() {
-        throw new Error("No right-player creation logic.");
+        throw new Error('No right-player creation logic.');
     }
 
     _createOppositePlayer() {
-        throw new Error("No opposite-player creation logic.");
+        throw new Error('No opposite-player creation logic.');
     }
 
     _createLeftPlayer() {
-        throw new Error("No left-player creation logic.");
+        throw new Error('No left-player creation logic.');
     }
 
-    startGame() {
-        throw new Error("No startGame logic.");
+    startRound() {
+        throw new Error('No startRound logic.');
     }
 
-    prepareNextStep() {
-        throw new Error("No goNextStep logic.");
+    letPlayerDiscard() {
+        throw new Error('No letPlayerDiscard logic.');
     }
 
-    goNextStep() {
-        throw new Error("No goNextStep logic.");
+    letPlayerDraw() {
+        throw new Error('No letPlayerDraw logic.');
     }
 }

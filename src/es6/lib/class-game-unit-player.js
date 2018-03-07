@@ -10,5 +10,7 @@ export default class {
         this.hand = []; /* 手牌（ツモ牌は含まない） */
         this.melds = []; /* 副露面子 */
         this.flowers = []; /* 花牌 */
+        this.discards = []; /* 捨て牌 */
+        this.startingWind; /* 開始時の門風 */
     }
 }

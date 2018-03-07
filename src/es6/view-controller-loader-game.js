@@ -1,6 +1,12 @@
-import PlayField from '../js/view-controller-game_play-field'
-import ExitButton from '../js/view-controller-game_exit-button'
-import SelfPlayerHandTileDrawn from '../js/view-controller-game_self-player-hand-tile-drawn'
+import {
+    default as PlayField
+} from '../js/view-controller-game_play-field'
+import {
+    default as ExitButton
+} from '../js/view-controller-game_exit-button'
+import {
+    default as SelfPlayerHandTileDrawn
+} from '../js/view-controller-game_self-player-hand-tile-drawn'
 
 global.window.addEventListener('DOMContentLoaded', () => {
     global.objPlayField = new PlayField(global.document);

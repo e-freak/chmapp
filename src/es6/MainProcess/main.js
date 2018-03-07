@@ -57,7 +57,7 @@ let game;
 
 //asynchronous-message_self-player-hand-tile-drawnチャンネルの受信処理
 ipcMain.on('asynchronous-message_self-player-hand-tile-drawn', (event, arg) => {
-  if (arg === 'draw-tile') {
+  if (arg === 'discard-tile') {
     // 連想配列からランダムに牌を選ぶ処理
     let tiles = []
     Object.keys(tileImages).forEach((element, index, array) => {
@@ -71,24 +71,34 @@ ipcMain.on('asynchronous-message_self-player-hand-tile-drawn', (event, arg) => {
   }
 });
 
-ipcMain.on('asynchronous-message_game', (event, arg) => {
+ipcMain.on('asynchronous-message_game-start', (event, arg) => {
   switch (arg) {
-    case 'draw-tile':
-      console.log('event:draw-tile');
-      // event.sender.send('asynchronous-reply_game', getRandomTile());
+    case 'start-game-wmc':
+      console.log('event:start-game-wmc');
+      game = new GameUnitWMC();
+      game.startRound();
+      game.letPlayerDraw(game.self);
+      event.sender.send('asynchronous-reply_game-start', game);
       break;
     default:
       console.log('Error: Unexpected behavior.');
   }
 });
 
-ipcMain.on('asynchronous-message_game-start', (event, arg) => {
+ipcMain.on('asynchronous-message_game-self-player-discard', (event, arg, tileKey) => {
   switch (arg) {
-    case 'start-game-wmc':
-      console.log('event:start-game-wmc');
-      game = new GameUnitWMC();
-      game.startGame();
-      event.sender.send('asynchronous-reply_game-start', game);
+    case 'discard-tile':
+      console.log('event:discard-tile');
+      // event.sender.send('asynchronous-reply_game-self-player-discard', getRandomTile());
+      game.letPlayerDiscard(game.self, tileKey);
+      game.letPlayerDraw(game.right);
+      game.letPlayerDiscard(game.right, tileKey);
+      game.letPlayerDraw(game.opposite);
+      game.letPlayerDiscard(game.opposite, tileKey);
+      game.letPlayerDraw(game.left);
+      game.letPlayerDiscard(game.left, tileKey);
+      game.letPlayerDraw(game.self);
+      event.sender.send('asynchronous-reply_game-self-player-discard', game);
       break;
     default:
       console.log('Error: Unexpected behavior.');

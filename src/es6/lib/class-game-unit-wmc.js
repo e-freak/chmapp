@@ -50,7 +50,7 @@ export default class extends GameUnit {
         return this._createSelfPlayer();
     }
 
-    startGame() {
+    startRound() {
         this.public = this._createPublicInfo();
         this.wall = this._createWall();
         this.self = this._createSelfPlayer();
@@ -58,42 +58,74 @@ export default class extends GameUnit {
         this.opposite = this._createOppositePlayer();
         this.left = this._createLeftPlayer();
 
-        // 各プレイヤーの手牌とプレイヤー自身のツモ牌
-        this.self.hand = this.wall.liveWall.splice(0, 13).sort(Tile.sortTiles);
-        this.right.hand = this.wall.liveWall.splice(0, 13).sort(Tile.sortTiles);
-        this.opposite.hand = this.wall.liveWall.splice(0, 13).sort(Tile.sortTiles);
-        this.left.hand = this.wall.liveWall.splice(0, 13).sort(Tile.sortTiles);
-        this.self.drawTile = this.wall.liveWall.splice(0, 1)[0];
+        // 各プレイヤーの手牌13枚をセットして理牌
+        [4, 4, 4, 1].forEach((tileCount) => {
+            [this.self, this.right, this.opposite, this.left].forEach((player) => {
+                player.hand = [...player.hand, ...this.wall.liveWall.splice(0, tileCount)]
+            })
+        });
+        [this.self, this.right, this.opposite, this.left].forEach((player) => {
+            player.hand = player.hand.sort(Tile.sortTiles);
+        });
+        // this.self.drawTile = this.wall.liveWall.splice(0, 1)[0];
 
-        // 各プレイヤーの花牌
-        for (let value of Array(8)) {
-            if (this.self.hand[this.self.hand.length-1].suit === 'flower') {
-                this.self.flowers.push(this.self.hand.pop());
-                this.self.hand = [...this.self.hand, ...this.wall.liveWall.splice(0, 1)].sort(Tile.sortTiles);
-            }
+        // 各プレイヤーの花牌を理牌
+        [this.self, this.right, this.opposite, this.left].forEach((player) => {
+            [...Array(8)].forEach(() => { // 花牌は最多でも8枚
+                if (player.hand[player.hand.length - 1].suit === 'flower') {
+                    player.flowers.push(player.hand.pop());
+                    player.hand = [...player.hand, ...this.wall.liveWall.splice(0, 1)].sort(Tile.sortTiles);
+                }
+                player.flowers = player.flowers.sort(Tile.sortTiles);
+            });
+        });
+
+        // 自家のツモ牌が花牌なら追加ドロー
+        // [...Array(8)].forEach(() => { // 花牌は最多でも8枚
+        //     if (this.self.drawTile.suit === 'flower') {
+        //         this.self.flowers.push(this.self.drawTile);
+        //         this.self.flowers = this.self.flowers.sort(Tile.sortTiles);
+        //         this.self.drawTile = this.wall.liveWall.splice(0, 1)[0];
+        //     }
+        // });
+    }
+
+    letPlayerDiscard(player, tileKey) {
+        const TILE_TO_DISCARD = {
+            'draw': player.drawTile,
+            'hand1': player.hand[0],
+            'hand2': player.hand[1],
+            'hand3': player.hand[2],
+            'hand4': player.hand[3],
+            'hand5': player.hand[4],
+            'hand6': player.hand[5],
+            'hand7': player.hand[6],
+            'hand8': player.hand[7],
+            'hand9': player.hand[8],
+            'hand10': player.hand[9],
+            'hand11': player.hand[10],
+            'hand12': player.hand[11],
+            'hand13': player.hand[12]
         }
-        this.self.flowers = this.self.flowers.sort(Tile.sortTiles);
-        for (let value of Array(8)) {
-            if (this.right.hand[this.right.hand.length-1].suit === 'flower') {
-                this.right.flowers.push(this.right.hand.pop());
-                this.right.hand = [...this.right.hand, ...this.wall.liveWall.splice(0, 1)].sort(Tile.sortTiles);
-            }
+        player.discards.push(TILE_TO_DISCARD[tileKey]);
+        if (tileKey !== 'draw') {
+            TILE_TO_DISCARD[tileKey] = player.drawTile;
+            player.hand = player.hand.sort(Tile.sortTiles);
         }
-        this.right.flowers = this.right.flowers.sort(Tile.sortTiles);
-        for (let value of Array(8)) {
-            if (this.opposite.hand[this.opposite.hand.length-1].suit === 'flower') {
-                this.opposite.flowers.push(this.opposite.hand.pop());
-                this.opposite.hand = [...this.opposite.hand, ...this.wall.liveWall.splice(0, 1)].sort(Tile.sortTiles);
+        player.drawTile = undefined;
+    }
+
+    letPlayerDraw(player) {
+        player.drawTile = this.wall.liveWall.splice(0, 1)[0];
+        // ツモ牌が花牌なら追加ドロー
+        const EXPOSED_FLOWERS_COUNT = this.self.flowers.length + this.right.flowers.length + this.opposite.flowers.length + this.left.flowers.length;
+        [...Array(8 - EXPOSED_FLOWERS_COUNT)].forEach(() => { // 見えていない花牌の回数分ループ
+            if (player.drawTile.suit === 'flower') {
+                player.flowers.push(player.drawTile);
+                player.flowers = player.flowers.sort(Tile.sortTiles);
+                player.drawTile = this.wall.liveWall.splice(0, 1)[0];
             }
-        }
-        this.opposite.flowers = this.opposite.flowers.sort(Tile.sortTiles);
-        for (let value of Array(8)) {
-            if (this.left.hand[this.left.hand.length-1].suit === 'flower') {
-                this.left.flowers.push(this.left.hand.pop());
-                this.left.hand = [...this.left.hand, ...this.wall.liveWall.splice(0, 1)].sort(Tile.sortTiles);
-            }
-        }
-        this.left.flowers = this.left.flowers.sort(Tile.sortTiles);
+        });
     }
 }
 

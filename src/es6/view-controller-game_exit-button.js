@@ -1,4 +1,4 @@
-export default class ExitButton {
+export default class {
     constructor(view) {
         this._view = view;
     }
