@@ -1,6 +1,12 @@
 import {
   tileImages
 } from '../Data/associative-array_tile-images'
+import {
+  TILE_ATTRIBUTE
+} from '../lib/const-tile-attribute';
+import {
+  default as GameUnitWMC
+} from '../lib/class-game-unit-wmc';
 // アプリケーションをコントロールするモジュール
 import electron from 'electron'
 const {
@@ -46,6 +52,9 @@ app.on('ready', () => {
   // });
 });
 
+// ロジックを含むインスタンスはこちら
+let game;
+
 //asynchronous-message_self-player-hand-tile-drawnチャンネルの受信処理
 ipcMain.on('asynchronous-message_self-player-hand-tile-drawn', (event, arg) => {
   if (arg === 'draw-tile') {
@@ -64,13 +73,22 @@ ipcMain.on('asynchronous-message_self-player-hand-tile-drawn', (event, arg) => {
 
 ipcMain.on('asynchronous-message_game', (event, arg) => {
   switch (arg) {
-    case 'start-game-wmc':
-      console.log('start-game-wmc');
-      event.sender.send('asynchronous-reply_game', 'hoge-');
-      break;
     case 'draw-tile':
-      console.log('draw-tile');
-      event.sender.send('asynchronous-reply_game', getRandomTile());
+      console.log('event:draw-tile');
+      // event.sender.send('asynchronous-reply_game', getRandomTile());
+      break;
+    default:
+      console.log('Error: Unexpected behavior.');
+  }
+});
+
+ipcMain.on('asynchronous-message_game-start', (event, arg) => {
+  switch (arg) {
+    case 'start-game-wmc':
+      console.log('event:start-game-wmc');
+      game = new GameUnitWMC();
+      game.startGame();
+      event.sender.send('asynchronous-reply_game-start', game);
       break;
     default:
       console.log('Error: Unexpected behavior.');
@@ -80,8 +98,8 @@ ipcMain.on('asynchronous-message_game', (event, arg) => {
 function getRandomTile() {
   // 連想配列からランダムに牌を選ぶ処理
   let tiles = []
-  Object.keys(tileImages).forEach((element, index, array) => {
-    tiles.push(element);
+  Object.keys(TILE_ATTRIBUTE).forEach((element, index, array) => {
+    tiles.push(element); // 連想配列のキーを詰め込む
   })
   let tilenum = Math.floor(Math.random() * tiles.length);
   console.log(tiles[tilenum]);

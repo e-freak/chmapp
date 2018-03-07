@@ -7,8 +7,8 @@ export default class {
         this.timeLimit = 0; /* 操作時間猶予（秒） */
         this.timeLimitExtra = 0; /* 持ち時間（秒） */
         this.drawTile; /* ツモ牌 */
-        this.hand; /* 手牌（ツモ牌は含まない） */
-        this.melds = [undefined, undefined, undefined, undefined]; /* 副露面子 */
-        this.flowers = [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined]; /* 花牌 */
+        this.hand = []; /* 手牌（ツモ牌は含まない） */
+        this.melds = []; /* 副露面子 */
+        this.flowers = []; /* 花牌 */
     }
 }

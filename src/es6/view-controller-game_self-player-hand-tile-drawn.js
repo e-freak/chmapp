@@ -29,7 +29,6 @@ export default class SelfPlayerHandTileDrawn {
     _onLoadEventHandler(event, arg) { // MainProcessとのIPCにおけるイベントハンドラ
         // MainProcessから受け取った牌情報をもとに、ツモ牌の画像を変更する
         this._view.getElementById('self-player-hand-tile-drawn').src = '../image/' + tileImages[arg];
-        console.log('aaaaa');
     }
 
     onClickButton() {
