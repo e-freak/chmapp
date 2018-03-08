@@ -69,47 +69,26 @@ export default class extends GameUnit {
         });
         // this.self.drawTile = this.wall.liveWall.splice(0, 1)[0];
 
-        // 各プレイヤーの花牌を理牌
+        // 各プレイヤーの花牌をセット
         [this.self, this.right, this.opposite, this.left].forEach((player) => {
             [...Array(8)].forEach(() => { // 花牌は最多でも8枚
                 if (player.hand[player.hand.length - 1].suit === 'flower') {
                     player.flowers.push(player.hand.pop());
                     player.hand = [...player.hand, ...this.wall.liveWall.splice(0, 1)].sort(Tile.sortTiles);
                 }
-                player.flowers = player.flowers.sort(Tile.sortTiles);
+                // player.flowers = player.flowers.sort(Tile.sortTiles);
             });
         });
-
-        // 自家のツモ牌が花牌なら追加ドロー
-        // [...Array(8)].forEach(() => { // 花牌は最多でも8枚
-        //     if (this.self.drawTile.suit === 'flower') {
-        //         this.self.flowers.push(this.self.drawTile);
-        //         this.self.flowers = this.self.flowers.sort(Tile.sortTiles);
-        //         this.self.drawTile = this.wall.liveWall.splice(0, 1)[0];
-        //     }
-        // });
     }
 
+    /* tileKeyに入る文字列は'draw', 'hand1', 'hand2'...'hand12', 'hand13'を想定している */
     letPlayerDiscard(player, tileKey) {
-        const TILE_TO_DISCARD = {
-            'draw': player.drawTile,
-            'hand1': player.hand[0],
-            'hand2': player.hand[1],
-            'hand3': player.hand[2],
-            'hand4': player.hand[3],
-            'hand5': player.hand[4],
-            'hand6': player.hand[5],
-            'hand7': player.hand[6],
-            'hand8': player.hand[7],
-            'hand9': player.hand[8],
-            'hand10': player.hand[9],
-            'hand11': player.hand[10],
-            'hand12': player.hand[11],
-            'hand13': player.hand[12]
-        }
-        player.discards.push(TILE_TO_DISCARD[tileKey]);
-        if (tileKey !== 'draw') {
-            TILE_TO_DISCARD[tileKey] = player.drawTile;
+        if (tileKey === 'draw') {
+            player.discards.push(player.drawTile);
+        } else {
+            const handIndex = Number(tileKey.replace(/hand/g, '')) - 1; // どの手牌か
+            player.discards.push(player.hand[handIndex]);
+            player.hand[handIndex] = player.drawTile;
             player.hand = player.hand.sort(Tile.sortTiles);
         }
         player.drawTile = undefined;
@@ -122,7 +101,7 @@ export default class extends GameUnit {
         [...Array(8 - EXPOSED_FLOWERS_COUNT)].forEach(() => { // 見えていない花牌の回数分ループ
             if (player.drawTile.suit === 'flower') {
                 player.flowers.push(player.drawTile);
-                player.flowers = player.flowers.sort(Tile.sortTiles);
+                // player.flowers = player.flowers.sort(Tile.sortTiles);
                 player.drawTile = this.wall.liveWall.splice(0, 1)[0];
             }
         });

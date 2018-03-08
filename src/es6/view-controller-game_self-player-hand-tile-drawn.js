@@ -2,10 +2,13 @@ import electron from 'electron'
 const {
     ipcRenderer
 } = electron;
+import {
+    default as ViewController
+} from './lib/class-view-controller-game'
 
-export default class {
+export default class extends ViewController {
     constructor(view) {
-        this._view = view;
+        super(view);
     }
 
     initialize() {
@@ -23,41 +26,11 @@ export default class {
 
     _onLoadEventHandler(event, arg) { // MainProcessとのIPCにおけるイベントハンドラ
         // MainProcessから受け取った牌情報をもとに、ツモ牌の画像を変更する
-        this.reloadInfo(arg);
+        this.reloadUI(arg);
     }
 
     onClickButton() {
         // 文字列'discard-tile'および'draw'を非同期通信で送信
         ipcRenderer.send('asynchronous-message_game-self-player-discard', 'discard-tile', 'draw'); // 最後の引数はツモ牌を切ることを指すキー
-    }
-
-    reloadInfo(arg) {
-        this._view.getElementById('wall-tiles-count').innerHTML = arg.wall.liveWall.length; // 山の枚数を更新
-        this._view.getElementById('self-player-hand-tile-drawn').src = '../image/' + arg.self.drawTile.imageFile; // ツモ牌画像更新
-        [...Array.from(Array(13), (_, x) => x)].forEach((element) => { // 手牌画像更新
-            this._view.getElementById('self-player-hand-tile' + (element + 1)).src = '../image/' + arg.self.hand[element].imageFile;
-        });
-        const PLAYER_DICT = {
-            'self': arg.self,
-            'right': arg.right,
-            'opposite': arg.opposite,
-            'left': arg.left
-        };
-        ['self', 'right', 'opposite', 'left'].forEach((playerKey) => {
-            [...Array.from(Array(8), (_, x) => x)].forEach((element) => { // 花牌画像更新
-                try {
-                    this._view.getElementById(playerKey + '-player-meld5-tile' + (element + 1)).src = '../image/' + PLAYER_DICT[playerKey].flowers[element].imageFile;
-                } catch (e) {
-                    // 配列の領域外アクセスは想定された動きなので無視する
-                }
-            });
-            [...Array.from(Array(33), (_, x) => x)].forEach((element) => { // 捨て牌画像更新
-                try {
-                    this._view.getElementById(playerKey + '-discard-tile' + (element + 1)).src = '../image/' + PLAYER_DICT[playerKey].discards[element].imageFile;
-                } catch (e) {
-                    // 配列の領域外アクセスは想定された動きなので無視する
-                }
-            });
-        });
     }
 }
