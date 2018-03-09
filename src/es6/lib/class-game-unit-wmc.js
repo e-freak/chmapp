@@ -50,14 +50,17 @@ export default class extends GameUnit {
         return this._createSelfPlayer();
     }
 
-    startRound() {
+    startGame() {
         this.public = this._createPublicInfo();
         this.wall = this._createWall();
         this.self = this._createSelfPlayer();
         this.right = this._createRightPlayer();
         this.opposite = this._createOppositePlayer();
         this.left = this._createLeftPlayer();
+        this.currentPlayer = undefined;
+    }
 
+    goNextRound() {
         // 各プレイヤーの手牌13枚をセットして理牌
         [4, 4, 4, 1].forEach((tileCount) => {
             [this.self, this.right, this.opposite, this.left].forEach((player) => {
@@ -81,17 +84,16 @@ export default class extends GameUnit {
         });
     }
 
-    /* tileKeyに入る文字列は'draw', 'hand1', 'hand2'...'hand12', 'hand13'を想定している */
-    letPlayerDiscard(player, tileKey) {
-        if (tileKey === 'draw') {
-            player.discards.push(player.drawTile);
+    goNextPlayer() {
+        if (this.currentPlayer === undefined || this.currentPlayer === this.left) {
+            this.currentPlayer = this.self;
+        } else if (this.currentPlayer === this.self) {
+            this.currentPlayer = this.right;
+        } else if (this.currentPlayer === this.right) {
+            this.currentPlayer = this.opposite;
         } else {
-            const handIndex = Number(tileKey.replace(/hand/g, '')) - 1; // どの手牌か
-            player.discards.push(player.hand[handIndex]);
-            player.hand[handIndex] = player.drawTile;
-            player.hand = player.hand.sort(Tile.sortTiles);
+            this.currentPlayer = this.left;
         }
-        player.drawTile = undefined;
     }
 
     letPlayerDraw(player) {
@@ -105,6 +107,19 @@ export default class extends GameUnit {
                 player.drawTile = this.wall.liveWall.splice(0, 1)[0];
             }
         });
+    }
+
+    /* tileKeyに入る文字列は'draw', 'hand1', 'hand2'...'hand12', 'hand13'を想定している */
+    letPlayerDiscard(player, tileKey) {
+        if (tileKey === 'draw') {
+            player.discards.push(player.drawTile);
+        } else {
+            const handIndex = Number(tileKey.replace(/hand/g, '')) - 1; // どの手牌か
+            player.discards.push(player.hand[handIndex]);
+            player.hand[handIndex] = player.drawTile;
+            player.hand = player.hand.sort(Tile.sortTiles);
+        }
+        player.drawTile = undefined;
     }
 }
 

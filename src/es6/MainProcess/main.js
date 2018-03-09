@@ -1,7 +1,4 @@
 import {
-  tileImages
-} from '../Data/associative-array_tile-images'
-import {
   TILE_ATTRIBUTE
 } from '../lib/const-tile-attribute';
 import {
@@ -55,28 +52,13 @@ app.on('ready', () => {
 // ロジックを含むインスタンスはこちら
 let game;
 
-//asynchronous-message_self-player-hand-tile-drawnチャンネルの受信処理
-ipcMain.on('asynchronous-message_self-player-hand-tile-drawn', (event, arg) => {
-  if (arg === 'discard-tile') {
-    // 連想配列からランダムに牌を選ぶ処理
-    let tiles = []
-    Object.keys(tileImages).forEach((element, index, array) => {
-      tiles.push(element);
-    })
-    let tilenum = Math.floor(Math.random() * tiles.length);
-    console.log(tiles[tilenum]);
-    // event.senderに送信元のプロセスが設定されているので、asynchronous-reply_self-player-hand-tile-drawnチャンネルで牌を示す文字列を非同期通信で送信元に送信
-    event.sender.send('asynchronous-reply_self-player-hand-tile-drawn', tiles[tilenum]);
-    // ※event.senderはwebContentsオブジェクト
-  }
-});
-
 ipcMain.on('asynchronous-message_game-start', (event, arg) => {
   switch (arg) {
     case 'start-game-wmc':
       console.log('event:start-game-wmc');
       game = new GameUnitWMC();
-      game.startRound();
+      game.startGame();
+      game.goNextRound();
       game.letPlayerDraw(game.self);
       event.sender.send('asynchronous-reply_game-start', game);
       break;
@@ -104,14 +86,3 @@ ipcMain.on('asynchronous-message_game-self-player-discard', (event, arg, tileKey
       console.log('Error: Unexpected behavior.');
   }
 });
-
-function getRandomTile() {
-  // 連想配列からランダムに牌を選ぶ処理
-  let tiles = []
-  Object.keys(TILE_ATTRIBUTE).forEach((element, index, array) => {
-    tiles.push(element); // 連想配列のキーを詰め込む
-  })
-  let tilenum = Math.floor(Math.random() * tiles.length);
-  console.log(tiles[tilenum]);
-  return tiles[tilenum];
-}

@@ -4,12 +4,13 @@
  */
 export default class {
     constructor() {
-        this.public = this._createPublicInfo();
-        this.wall = this._createWall();
-        this.self = this._createSelfPlayer();
-        this.right = this._createRightPlayer();
-        this.opposite = this._createOppositePlayer();
-        this.left = this._createLeftPlayer();
+        this.public;
+        this.wall;
+        this.self;
+        this.right;
+        this.opposite;
+        this.left;
+        this.currentPlayer;
 
         this._state; /* 状態 */
     }
@@ -38,8 +39,12 @@ export default class {
         throw new Error('No left-player creation logic.');
     }
 
-    startRound() {
-        throw new Error('No startRound logic.');
+    startGame() {
+        throw new Error('No startGame logic.');
+    }
+
+    goNextRound() {
+        throw new Error('No goNextRound logic.');
     }
 
     letPlayerDiscard() {
